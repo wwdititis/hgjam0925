@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctosd4eg7e6bt"]
+
+[ext_resource type="Script" uid="uid://b64i12r1wem3m" path="res://scripts/player.gd" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://uy4gfa8vlg3s" path="res://player/cat on rumba left.png" id="2_rkbax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqu6x"]
+radius = 32.3883
+
+[node name="Morgan" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_rkbax")
+
+[node name="CatOnRumbaLeft" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, -50)
+texture = ExtResource("2_rkbax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -30)
+shape = SubResource("CircleShape2D_kqu6x")

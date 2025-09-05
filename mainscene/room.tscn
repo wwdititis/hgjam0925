@@ -1,0 +1,263 @@
+[gd_scene load_steps=40 format=3 uid="uid://dndy48wocrbxk"]
+
+[ext_resource type="Script" uid="uid://cihpj4ivipgj7" path="res://mainscene/room.gd" id="1_lll8i"]
+[ext_resource type="PackedScene" uid="uid://b2y40wwhxjtmf" path="res://mainscene/GM.tscn" id="2_vtftu"]
+[ext_resource type="Texture2D" uid="uid://dqisg8j47v2b3" path="res://mainscene/roomsprites/floor.png" id="3_xh787"]
+[ext_resource type="Texture2D" uid="uid://ci3h7vvhhbdna" path="res://mainscene/roomsprites/walls.png" id="4_vtftu"]
+[ext_resource type="Texture2D" uid="uid://bfjpmjnbs1vm6" path="res://mainscene/roomsprites/bdoor.png" id="5_xh787"]
+[ext_resource type="Texture2D" uid="uid://ipjpnq73xxp7" path="res://mainscene/roomsprites/edoor.png" id="6_vtftu"]
+[ext_resource type="Texture2D" uid="uid://pn2lttpqtcor" path="res://mainscene/roomsprites/table.png" id="7_030vu"]
+[ext_resource type="Texture2D" uid="uid://de7qjq4cuy0qu" path="res://mainscene/roomsprites/window.png" id="8_yojsq"]
+[ext_resource type="Texture2D" uid="uid://bihe50ry453ew" path="res://mainscene/roomsprites/tallbookshelf.png" id="9_k4yad"]
+[ext_resource type="Texture2D" uid="uid://bx2gjwantvdxt" path="res://mainscene/roomsprites/bookshelf.png" id="10_vof8d"]
+[ext_resource type="Texture2D" uid="uid://cfnaeukmnck8k" path="res://mainscene/roomsprites/TV.png" id="11_guakr"]
+[ext_resource type="Texture2D" uid="uid://c7njmdf6x4h02" path="res://mainscene/roomsprites/mirror.png" id="12_7c7tl"]
+[ext_resource type="Texture2D" uid="uid://cdrgwra0xhjdv" path="res://mainscene/roomsprites/laptop.png" id="13_1vvn0"]
+[ext_resource type="Texture2D" uid="uid://kv11ux0qetq1" path="res://mainscene/roomsprites/coathanger.png" id="14_t6u0q"]
+[ext_resource type="Texture2D" uid="uid://dx5ai5y3hq87u" path="res://mainscene/roomsprites/chair.png" id="15_rxhun"]
+[ext_resource type="Texture2D" uid="uid://bhi3mdmn60sph" path="res://mainscene/roomsprites/futton.png" id="16_wc153"]
+[ext_resource type="Texture2D" uid="uid://blq7017a1bdtu" path="res://mainscene/roomsprites/bedside.png" id="17_47iu6"]
+[ext_resource type="PackedScene" uid="uid://ctosd4eg7e6bt" path="res://player/player.tscn" id="18_nvdac"]
+[ext_resource type="PackedScene" uid="uid://dyqovdfbx4laq" path="res://HUD/HUD.tscn" id="19_8o4ba"]
+[ext_resource type="Script" path="res://player/player.gd" id="19_vtftu"]
+[ext_resource type="Script" uid="uid://betspke3q3inp" path="res://interactables/pc/btn_pc.gd" id="20_gh180"]
+[ext_resource type="Texture2D" uid="uid://ctj0ul7ufrroi" path="res://HUD/bpaint.png" id="22_lll8i"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0hj58"]
+a = Vector2(12, -35)
+b = Vector2(-293, 123)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7o6el"]
+a = Vector2(165, 101)
+b = Vector2(-175, -72)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_epma8"]
+a = Vector2(28, -20)
+b = Vector2(-60, 26)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rs626"]
+a = Vector2(85, 18)
+b = Vector2(-14, -31)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8gfa2"]
+a = Vector2(-12, -16)
+b = Vector2(-59, 8)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_56eap"]
+a = Vector2(31, 4)
+b = Vector2(-51, -32)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7e8pk"]
+a = Vector2(-42, -14)
+b = Vector2(-40, 68)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cnaqk"]
+a = Vector2(18, 406)
+b = Vector2(-423, 188)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_mlewr"]
+a = Vector2(423, 115)
+b = Vector2(-96, 376)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_verd3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7u5yu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1lsr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okwcx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26cq6"]
+texture = ExtResource("22_lll8i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7qfis"]
+texture = ExtResource("22_lll8i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kkrwe"]
+texture = ExtResource("22_lll8i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sp1wp"]
+texture = ExtResource("22_lll8i")
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_lll8i")
+
+[node name="GM" parent="." instance=ExtResource("2_vtftu")]
+script = null
+
+[node name="floor" type="TextureRect" parent="."]
+offset_top = 105.0
+offset_right = 960.0
+offset_bottom = 597.0
+texture = ExtResource("3_xh787")
+metadata/_edit_lock_ = true
+
+[node name="walls" type="TextureRect" parent="."]
+offset_top = -161.0
+offset_right = 960.0
+offset_bottom = 331.0
+texture = ExtResource("4_vtftu")
+metadata/_edit_lock_ = true
+
+[node name="block_walls" type="StaticBody2D" parent="."]
+position = Vector2(422, 174)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="block_walls"]
+shape = SubResource("SegmentShape2D_0hj58")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="block_walls"]
+position = Vector2(186, 38)
+shape = SubResource("SegmentShape2D_7o6el")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="block_walls"]
+position = Vector2(413, 112)
+shape = SubResource("SegmentShape2D_epma8")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="block_walls"]
+position = Vector2(454, 126)
+shape = SubResource("SegmentShape2D_rs626")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="block_walls"]
+position = Vector2(-365, 99)
+shape = SubResource("SegmentShape2D_8gfa2")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="block_walls"]
+position = Vector2(-325, 117)
+shape = SubResource("SegmentShape2D_56eap")
+
+[node name="block_floor" type="StaticBody2D" parent="."]
+position = Vector2(422, 174)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="block_floor"]
+position = Vector2(-382, 121)
+shape = SubResource("SegmentShape2D_7e8pk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="block_floor"]
+shape = SubResource("SegmentShape2D_cnaqk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="block_floor"]
+position = Vector2(112, 31)
+shape = SubResource("SegmentShape2D_mlewr")
+
+[node name="furniture" type="Node2D" parent="."]
+position = Vector2(581, 164)
+rotation = 0.385965
+
+[node name="Bdoor" type="Sprite2D" parent="furniture"]
+position = Vector2(-525.262, 184.294)
+rotation = -0.385965
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("5_xh787")
+
+[node name="Edoor" type="Sprite2D" parent="furniture"]
+texture_filter = 2
+position = Vector2(308.532, -119.974)
+rotation = -0.385965
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("6_vtftu")
+
+[node name="Table" type="Sprite2D" parent="furniture"]
+position = Vector2(40.2776, 64.5888)
+rotation = -0.385965
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_030vu")
+
+[node name="Window" type="Sprite2D" parent="furniture"]
+position = Vector2(-33.5631, -93.2229)
+rotation = -0.385965
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("8_yojsq")
+
+[node name="Tallbookshelf" type="Sprite2D" parent="furniture"]
+position = Vector2(-267.252, 62.1821)
+rotation = -0.385965
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("9_k4yad")
+
+[node name="Bookshelf" type="Sprite2D" parent="furniture"]
+position = Vector2(-321.785, 209.553)
+rotation = -0.385965
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("10_vof8d")
+
+[node name="Tv" type="Sprite2D" parent="furniture"]
+position = Vector2(-364.439, 117.865)
+rotation = -0.385965
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_guakr")
+
+[node name="Mirror" type="Sprite2D" parent="furniture"]
+position = Vector2(-458.036, 185.042)
+rotation = -0.385965
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("12_7c7tl")
+
+[node name="Laptop" type="Sprite2D" parent="furniture"]
+position = Vector2(15.9551, 31.2959)
+rotation = -0.385965
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("13_1vvn0")
+
+[node name="Coathanger" type="Sprite2D" parent="furniture"]
+position = Vector2(197.336, -11.1049)
+rotation = -0.385965
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("14_t6u0q")
+
+[node name="Chair" type="Sprite2D" parent="furniture"]
+position = Vector2(0.0938721, 85.2349)
+rotation = -0.385965
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("15_rxhun")
+
+[node name="bed" type="StaticBody2D" parent="furniture"]
+position = Vector2(53.8499, 339.719)
+rotation = -0.385965
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="furniture/bed"]
+position = Vector2(-503, -499)
+polygon = PackedVector2Array(545, 520, 660, 458, 467, 355, 370, 417)
+
+[node name="Futton" type="Sprite2D" parent="furniture/bed"]
+position = Vector2(10, -58)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("16_wc153")
+
+[node name="Bedside" type="Sprite2D" parent="furniture"]
+position = Vector2(53.8499, 339.719)
+rotation = -0.385965
+texture = ExtResource("17_47iu6")
+
+[node name="Morgan" parent="." instance=ExtResource("18_nvdac")]
+z_index = 10
+position = Vector2(480, 358)
+script = ExtResource("19_vtftu")
+
+[node name="btnPC" type="Button" parent="."]
+offset_left = 581.0
+offset_top = 164.0
+offset_right = 632.0
+offset_bottom = 224.0
+rotation = 0.385965
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_verd3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7u5yu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y1lsr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_okwcx")
+script = ExtResource("20_gh180")
+
+[node name="HUD" parent="." instance=ExtResource("19_8o4ba")]
+
+[node name="paint" type="Button" parent="."]
+offset_left = 795.0
+offset_top = 459.0
+offset_right = 857.0
+offset_bottom = 527.0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_26cq6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7qfis")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kkrwe")
+theme_override_styles/normal = SubResource("StyleBoxTexture_sp1wp")
+
+[connection signal="pressed" from="btnPC" to="btnPC" method="_on_pressed"]
+[connection signal="pressed" from="paint" to="." method="_on_paint_pressed"]

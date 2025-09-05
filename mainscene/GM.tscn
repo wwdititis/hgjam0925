@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2y40wwhxjtmf"]
+
+[ext_resource type="Script" path="res://scripts/GM.gd" id="1_3n4vp"]
+
+[node name="GM" type="Node2D"]
+script = ExtResource("1_3n4vp")
+
+[node name="timerHealth" type="Timer" parent="."]
+
+[connection signal="timeout" from="timerHealth" to="." method="_on_timer_health_timeout"]

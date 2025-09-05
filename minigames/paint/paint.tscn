@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfatuuvqiis6s"]
+
+[ext_resource type="Script" uid="uid://dvgverhx81spi" path="res://minigames/paint/paint.gd" id="1_mgi27"]
+[ext_resource type="Texture2D" uid="uid://cp0pe1vuita74" path="res://minigames/paint/bgPaint.png" id="2_bibov"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg4mj"]
+bg_color = Color(0.372769, 0.585461, 0.717237, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgi27"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgi27"]
+size = Vector2(271, 250)
+
+[node name="Paint" type="Node2D"]
+script = ExtResource("1_mgi27")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+z_index = -10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 305.0
+offset_right = 655.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gg4mj")
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+z_index = -10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 336.0
+offset_top = 32.0
+offset_right = 627.0
+offset_bottom = 313.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mgi27")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer2"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_bibov")
+
+[node name="exit" type="Button" parent="."]
+offset_left = 759.0
+offset_top = 249.0
+offset_right = 817.0
+offset_bottom = 280.0
+text = "exit"
+
+[node name="reload" type="Button" parent="."]
+offset_left = 123.0
+offset_top = 244.0
+offset_right = 181.0
+offset_bottom = 275.0
+text = "reload"
+
+[node name="Howto" type="AcceptDialog" parent="."]
+title = "How to Play"
+initial_position = 1
+size = Vector2i(300, 120)
+unresizable = true
+always_on_top = true
+dialog_text = "Click on the white blocks to learn a character"
+dialog_autowrap = true
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[node name="DrawArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrawArea"]
+position = Vector2(484.5, 171)
+shape = SubResource("RectangleShape2D_mgi27")
+
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
+[connection signal="confirmed" from="Howto" to="." method="_on_howto_confirmed"]
