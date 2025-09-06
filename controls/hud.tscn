@@ -1,24 +1,24 @@
 [gd_scene load_steps=9 format=3 uid="uid://dyqovdfbx4laq"]
 
-[ext_resource type="Texture2D" uid="uid://c6ytbvaibnprl" path="res://HUD/phone.png" id="1_6x352"]
-[ext_resource type="Script" uid="uid://dq0jo0766a6a1" path="res://HUD/hud.gd" id="2_e7sel"]
-[ext_resource type="PackedScene" uid="uid://xvxta0pjovmh" path="res://HUD/statsbar.tscn" id="3_amwvk"]
-[ext_resource type="PackedScene" uid="uid://csxs58i34oxxv" path="res://HUD/messages.tscn" id="4_aa5tu"]
+[ext_resource type="Script" uid="uid://dq0jo0766a6a1" path="res://controls/hud.gd" id="1_0cv51"]
+[ext_resource type="Texture2D" uid="uid://c6ytbvaibnprl" path="res://controls/phone.png" id="2_lo8gu"]
+[ext_resource type="PackedScene" uid="uid://xvxta0pjovmh" path="res://controls/statsbar.tscn" id="3_tlsrb"]
+[ext_resource type="PackedScene" uid="uid://csxs58i34oxxv" path="res://controls/messages.tscn" id="4_jp2ct"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e7sel"]
-texture = ExtResource("1_6x352")
+texture = ExtResource("2_lo8gu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_psv2s"]
-texture = ExtResource("1_6x352")
+texture = ExtResource("2_lo8gu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsxvn"]
-texture = ExtResource("1_6x352")
+texture = ExtResource("2_lo8gu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x352"]
-texture = ExtResource("1_6x352")
+texture = ExtResource("2_lo8gu")
 
 [node name="HUD" type="Node2D"]
-script = ExtResource("2_e7sel")
+script = ExtResource("1_0cv51")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -45,15 +45,15 @@ offset_right = 116.0
 offset_bottom = 539.0
 alignment = 1
 
-[node name="sleep" parent="CanvasLayer/stats" instance=ExtResource("3_amwvk")]
+[node name="bar1" parent="CanvasLayer/stats" instance=ExtResource("3_tlsrb")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="food" parent="CanvasLayer/stats" instance=ExtResource("3_amwvk")]
+[node name="bar2" parent="CanvasLayer/stats" instance=ExtResource("3_tlsrb")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="messages" parent="CanvasLayer" instance=ExtResource("4_aa5tu")]
+[node name="messages" parent="CanvasLayer" instance=ExtResource("4_jp2ct")]
 visible = false
 
 [connection signal="pressed" from="CanvasLayer/phone" to="." method="_on_phone_pressed"]

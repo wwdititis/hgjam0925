@@ -1,9 +1,8 @@
 extends Node
 
 var room = preload("res://mainscene/room.tscn")
-var messages = preload("res://HUD/messages.tscn")
+var messages = preload("res://controls/messages.tscn")
 var paint = preload("res://minigames/paint/paint.tscn")
-var pc = preload("res://interactables/pc/pc.tscn")
 var gameover = preload("res://mainscene/gameover.tscn")
 
 var maxSleep = 100

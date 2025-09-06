@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxc8afjbi7s0r"]
+[gd_scene load_steps=7 format=3 uid="uid://csxs58i34oxxv"]
 
-[ext_resource type="Script" uid="uid://c3bf40wepjn54" path="res://HUD/messages.gd" id="1_ugvmy"]
-[ext_resource type="Texture2D" uid="uid://c6ytbvaibnprl" path="res://HUD/phone.png" id="2_8fa3d"]
+[ext_resource type="Texture2D" uid="uid://c6ytbvaibnprl" path="res://controls/phone.png" id="1_6t08g"]
+[ext_resource type="Script" uid="uid://c3bf40wepjn54" path="res://controls/messages.gd" id="1_qdrgf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6t08g"]
 
@@ -11,26 +11,25 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2fumv"]
 
-[node name="pc" type="Node2D"]
-script = ExtResource("1_ugvmy")
+[node name="messages" type="Node2D"]
+script = ExtResource("1_qdrgf")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 960.0
+offset_bottom = 542.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color(0, 0, 0, 0.639216)
 
-[node name="Phone" type="Sprite2D" parent="CanvasLayer"]
+[node name="Phone" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(472.5, 270)
 scale = Vector2(2.12838, 1.72168)
-texture = ExtResource("2_8fa3d")
+texture = ExtResource("1_6t08g")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 376.0
 offset_top = 163.0
 offset_right = 570.0
@@ -45,7 +44,7 @@ New messages
 "
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="."]
 offset_right = 315.0
 offset_bottom = 539.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6t08g")
@@ -53,7 +52,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_qdrgf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_bibb2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2fumv")
 
-[node name="Button2" type="Button" parent="CanvasLayer"]
+[node name="Button2" type="Button" parent="."]
 offset_left = 632.0
 offset_top = 1.0
 offset_right = 962.0
@@ -63,5 +62,5 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_qdrgf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_bibb2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2fumv")
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_pressed"]

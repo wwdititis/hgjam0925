@@ -56,3 +56,11 @@ func can_draw_at(pos: Vector2) -> bool:
 		if r.collider == draw_area:
 			return true
 	return false
+
+
+func _on_reload_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_exit_pressed() -> void:
+	pass # Replace with function body.

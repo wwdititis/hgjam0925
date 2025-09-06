@@ -11,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="statBar" type="ProgressBar" parent="."]
+layout_mode = 0
 offset_right = 110.0
 offset_bottom = 10.0
 theme_override_styles/background = SubResource("StyleBoxFlat_vtyny")

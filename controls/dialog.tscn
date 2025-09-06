@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://di4cyvr3wuld4"]
 
-[ext_resource type="FontFile" path="res://assets/DotGothic16-Regular.ttf" id="1_xgpj5"]
+[ext_resource type="FontFile" uid="uid://ck0aldn7dou6u" path="res://fonts/DotGothic16-Regular.ttf" id="1_xgpj5"]
 
 [node name="Dialog" type="CanvasLayer"]
 
