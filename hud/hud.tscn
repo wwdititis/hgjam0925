@@ -80,30 +80,35 @@ custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
+label = "sleep"
 
 [node name="social_bar" parent="CanvasLayer/stats/needs" instance=ExtResource("3_0cv51")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
+label = "social"
 
 [node name="food_bar" parent="CanvasLayer/stats/needs" instance=ExtResource("3_0cv51")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
+label = "food"
 
 [node name="water_bar" parent="CanvasLayer/stats/needs" instance=ExtResource("3_0cv51")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
+label = "water"
 
 [node name="anxiety_bar" parent="CanvasLayer/stats" instance=ExtResource("3_0cv51")]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
+label = "anxiety"
 
 [connection signal="pressed" from="CanvasLayer/phone" to="." method="_on_phone_pressed"]
 [connection signal="confirmed" from="CanvasLayer/dialog_window" to="." method="_on_dialog_window_confirmed"]

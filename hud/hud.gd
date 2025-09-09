@@ -13,11 +13,11 @@ class_name HUD extends Node2D
 @onready var dialog_window: ConfirmationDialog = $CanvasLayer/dialog_window
 
 func _ready():
-	sleep_bar.set_label("sleep")
-	social_bar.set_label("social")
-	food_bar.set_label("food")
-	water_bar.set_label("water")
-	anxiety_bar.set_label("anxiety")
+	set_sleep(Globals.currentSleep)
+	set_social(Globals.currentSocial)
+	set_food(Globals.currentFood)
+	set_water(Globals.currentWater)
+	set_anxiety(Globals.currentAnxiety)
 	dialog_container.visible = false
 	messages.visible = false
 	dialog_window.visible = false

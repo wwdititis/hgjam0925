@@ -79,14 +79,6 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(PENCIL, Input.CURSOR_ARROW, Vector2(0,0))
 	eraser_radius = grid_size * 0.75
 
-func _on_exit_pressed() -> void:
-	Input.set_custom_mouse_cursor(Globals.CURSOR, Input.CURSOR_ARROW, Vector2(0,0))
-	queue_free()
-
-func _on_clear_pressed() -> void:
-	for child in line_container.get_children():
-		child.queue_free()
-
 func _on_btn_eraser_toggled(toggled_on: bool) -> void:
 	eraser_mode = toggled_on
 	if eraser_mode:
@@ -95,3 +87,12 @@ func _on_btn_eraser_toggled(toggled_on: bool) -> void:
 		Input.set_custom_mouse_cursor(ERASER, Input.CURSOR_ARROW, Vector2(0,0))
 	else:
 		Input.set_custom_mouse_cursor(PENCIL, Input.CURSOR_ARROW, Vector2(0,0))
+
+func _on_clear_pressed() -> void:
+	for child in line_container.get_children():
+		child.queue_free()		
+
+func _on_exit_pressed() -> void:
+	Input.set_custom_mouse_cursor(Globals.CURSOR, Input.CURSOR_ARROW, Vector2(0,0))
+	Globals.emit_event("sleep_depleted", "paint.gd")
+	queue_free()

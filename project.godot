@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://managers/globals.gd"
-Gm="*res://managers/gm.gd"
 
 [display]
 

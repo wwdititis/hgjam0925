@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ctosd4eg7e6bt" path="res://player/player.tscn" id="3_jae4q"]
 
 [node name="AWtG" type="Node"]
+
+[node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_ge8x6")
 
 [node name="Dorm" parent="." instance=ExtResource("1_0dbes")]
