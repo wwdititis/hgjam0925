@@ -1,5 +1,8 @@
 extends Node2D
 
+const PENCIL: Texture2D = preload("res://minigames/paint/pencil.png")
+const ERASER: Texture2D = preload("res://minigames/paint/eraser.png")
+
 @onready var btnEraser: Button = $btnEraser
 var eraser_mode := false
 var eraser_radius: float = 0.0
@@ -73,9 +76,11 @@ func erase_at(global_pos: Vector2) -> void:
 					return  # remove only the first hit stroke; remove "return" to delete all matches	
 
 func _ready() -> void:
+	Input.set_custom_mouse_cursor(PENCIL, Input.CURSOR_ARROW, Vector2(0,0))
 	eraser_radius = grid_size * 0.75
 
 func _on_exit_pressed() -> void:
+	Input.set_custom_mouse_cursor(Globals.CURSOR, Input.CURSOR_ARROW, Vector2(0,0))
 	queue_free()
 
 func _on_clear_pressed() -> void:
@@ -87,3 +92,6 @@ func _on_btn_eraser_toggled(toggled_on: bool) -> void:
 	if eraser_mode:
 		_pressed = false
 		current_line = null
+		Input.set_custom_mouse_cursor(ERASER, Input.CURSOR_ARROW, Vector2(0,0))
+	else:
+		Input.set_custom_mouse_cursor(PENCIL, Input.CURSOR_ARROW, Vector2(0,0))
