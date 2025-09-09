@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dts0fh1imw00m"]
+
+[ext_resource type="PackedScene" uid="uid://dndy48wocrbxk" path="res://dorm/dorm.tscn" id="1_0dbes"]
+[ext_resource type="Script" uid="uid://bvtywnispnoua" path="res://managers/gm.gd" id="1_ge8x6"]
+[ext_resource type="PackedScene" uid="uid://dyqovdfbx4laq" path="res://hud/hud.tscn" id="2_ge8x6"]
+[ext_resource type="PackedScene" uid="uid://ctosd4eg7e6bt" path="res://player/player.tscn" id="3_jae4q"]
+
+[node name="AWtG" type="Node"]
+script = ExtResource("1_ge8x6")
+
+[node name="Dorm" parent="." instance=ExtResource("1_0dbes")]
+
+[node name="HUD" parent="." instance=ExtResource("2_ge8x6")]
+
+[node name="Morgan" parent="." groups=["Player"] instance=ExtResource("3_jae4q")]
+z_index = 10
+position = Vector2(480, 358)

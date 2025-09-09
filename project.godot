@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="HGJam0925"
-run/main_scene="uid://dndy48wocrbxk"
+run/main_scene="uid://dts0fh1imw00m"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://mainscene/globals.gd"
+Globals="*res://managers/globals.gd"
+Gm="*res://managers/gm.gd"
 
 [display]
 

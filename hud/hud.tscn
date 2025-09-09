@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=3 uid="uid://dyqovdfbx4laq"]
+
+[ext_resource type="Script" uid="uid://dq0jo0766a6a1" path="res://hud/hud.gd" id="1_0cv51"]
+[ext_resource type="Texture2D" uid="uid://c6ytbvaibnprl" path="res://hud/phone.png" id="2_lo8gu"]
+[ext_resource type="PackedScene" uid="uid://drhew4vkvum7f" path="res://hud/stat_bar.tscn" id="3_0cv51"]
+[ext_resource type="PackedScene" uid="uid://csxs58i34oxxv" path="res://hud/messages.tscn" id="4_jp2ct"]
+[ext_resource type="FontFile" uid="uid://ck0aldn7dou6u" path="res://fonts/DotGothic16-Regular.ttf" id="5_lo8gu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e7sel"]
+texture = ExtResource("2_lo8gu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_psv2s"]
+texture = ExtResource("2_lo8gu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsxvn"]
+texture = ExtResource("2_lo8gu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x352"]
+texture = ExtResource("2_lo8gu")
+
+[node name="HUD" type="Node2D"]
+script = ExtResource("1_0cv51")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="phone" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -158.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_e7sel")
+theme_override_styles/hover = SubResource("StyleBoxTexture_psv2s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vsxvn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_6x352")
+
+[node name="dialog_container" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 1.0
+offset_top = 427.0
+offset_right = 288.0
+offset_bottom = 499.0
+
+[node name="dialog_panel" type="RichTextLabel" parent="CanvasLayer/dialog_container"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_lo8gu")
+theme_override_font_sizes/normal_font_size = 16
+text = "Some dialogue...
+
+"
+
+[node name="messages" parent="CanvasLayer" instance=ExtResource("4_jp2ct")]
+visible = false
+
+[node name="dialog_window" type="ConfirmationDialog" parent="CanvasLayer"]
+title = "Title"
+initial_position = 4
+size = Vector2i(200, 106)
+visible = true
+ok_button_text = "Yes"
+dialog_text = "Oi"
+cancel_button_text = "No"
+
+[node name="stats" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 2.0
+offset_top = 508.0
+offset_right = 288.0
+offset_bottom = 534.0
+
+[node name="needs" type="HBoxContainer" parent="CanvasLayer/stats"]
+layout_mode = 2
+
+[node name="sleep_bar" parent="CanvasLayer/stats/needs" instance=ExtResource("3_0cv51")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="social_bar" parent="CanvasLayer/stats/needs" instance=ExtResource("3_0cv51")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="food_bar" parent="CanvasLayer/stats/needs" instance=ExtResource("3_0cv51")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="water_bar" parent="CanvasLayer/stats/needs" instance=ExtResource("3_0cv51")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[node name="anxiety_bar" parent="CanvasLayer/stats" instance=ExtResource("3_0cv51")]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+
+[connection signal="pressed" from="CanvasLayer/phone" to="." method="_on_phone_pressed"]
+[connection signal="confirmed" from="CanvasLayer/dialog_window" to="." method="_on_dialog_window_confirmed"]

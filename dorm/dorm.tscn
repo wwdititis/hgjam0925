@@ -1,0 +1,197 @@
+[gd_scene load_steps=31 format=3 uid="uid://dndy48wocrbxk"]
+
+[ext_resource type="Script" uid="uid://cihpj4ivipgj7" path="res://dorm/dorm.gd" id="1_8fw6k"]
+[ext_resource type="Texture2D" uid="uid://dqisg8j47v2b3" path="res://dorm/dormsprites/floor.png" id="2_y4nmw"]
+[ext_resource type="Texture2D" uid="uid://ci3h7vvhhbdna" path="res://dorm/dormsprites/walls.png" id="3_iqxeu"]
+[ext_resource type="Texture2D" uid="uid://bfjpmjnbs1vm6" path="res://dorm/dormsprites/bdoor.png" id="4_fjxch"]
+[ext_resource type="Texture2D" uid="uid://ipjpnq73xxp7" path="res://dorm/dormsprites/edoor.png" id="5_5yxls"]
+[ext_resource type="Texture2D" uid="uid://pn2lttpqtcor" path="res://dorm/dormsprites/table.png" id="6_k7537"]
+[ext_resource type="Texture2D" uid="uid://de7qjq4cuy0qu" path="res://dorm/dormsprites/window.png" id="7_rkpy6"]
+[ext_resource type="Texture2D" uid="uid://bihe50ry453ew" path="res://dorm/dormsprites/tallbookshelf.png" id="8_p1wc0"]
+[ext_resource type="Texture2D" uid="uid://bx2gjwantvdxt" path="res://dorm/dormsprites/bookshelf.png" id="9_cem2j"]
+[ext_resource type="Texture2D" uid="uid://cfnaeukmnck8k" path="res://dorm/dormsprites/TV.png" id="10_ko1m3"]
+[ext_resource type="Texture2D" uid="uid://c7njmdf6x4h02" path="res://dorm/dormsprites/mirror.png" id="11_5ihvu"]
+[ext_resource type="Texture2D" uid="uid://cdrgwra0xhjdv" path="res://dorm/dormsprites/laptop.png" id="12_fij0p"]
+[ext_resource type="Texture2D" uid="uid://kv11ux0qetq1" path="res://dorm/dormsprites/coathanger.png" id="13_a1ajl"]
+[ext_resource type="Texture2D" uid="uid://dx5ai5y3hq87u" path="res://dorm/dormsprites/chair.png" id="14_otkw8"]
+[ext_resource type="Texture2D" uid="uid://blq7017a1bdtu" path="res://dorm/dormsprites/bedside.png" id="15_xba6u"]
+[ext_resource type="Texture2D" uid="uid://bhi3mdmn60sph" path="res://dorm/dormsprites/futton.png" id="16_jtnc3"]
+[ext_resource type="Script" uid="uid://il4jpcj615wf" path="res://managers/interactable.gd" id="17_v0sqk"]
+[ext_resource type="Texture2D" uid="uid://ctj0ul7ufrroi" path="res://dorm/dormsprites/bpaint.png" id="18_h4iiw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lll8i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qfis"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkrwe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_26cq6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_verd3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7u5yu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1lsr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okwcx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26cq6"]
+texture = ExtResource("18_h4iiw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7qfis"]
+texture = ExtResource("18_h4iiw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kkrwe"]
+texture = ExtResource("18_h4iiw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sp1wp"]
+texture = ExtResource("18_h4iiw")
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_8fw6k")
+
+[node name="block_walls" type="StaticBody2D" parent="."]
+position = Vector2(422, 174)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="block_walls"]
+build_mode = 1
+polygon = PackedVector2Array(436, 95, 352, 138, 12, -39, -294, 119, -377, 76, -423, 96, -422, 192, 16, 406, 535, 146)
+
+[node name="background" type="Node2D" parent="."]
+position = Vector2(480, 363)
+
+[node name="floor" type="Sprite2D" parent="background"]
+texture = ExtResource("2_y4nmw")
+metadata/_edit_lock_ = true
+
+[node name="walls" type="Sprite2D" parent="background"]
+position = Vector2(1, -272)
+texture = ExtResource("3_iqxeu")
+metadata/_edit_lock_ = true
+
+[node name="Bdoor" type="Sprite2D" parent="background"]
+position = Vector2(-455, -226)
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("4_fjxch")
+
+[node name="Edoor" type="Sprite2D" parent="background"]
+texture_filter = 2
+position = Vector2(432, -194)
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("5_5yxls")
+
+[node name="Table" type="Sprite2D" parent="background"]
+position = Vector2(114, -124)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_k7537")
+
+[node name="Window" type="Sprite2D" parent="background"]
+position = Vector2(105, -298)
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("7_rkpy6")
+
+[node name="Tallbookshelf" type="Sprite2D" parent="background"]
+position = Vector2(-170, -242)
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("8_p1wc0")
+
+[node name="Bookshelf" type="Sprite2D" parent="background"]
+position = Vector2(-276, -126)
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("9_cem2j")
+
+[node name="Tv" type="Sprite2D" parent="background"]
+position = Vector2(-281, -227)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_ko1m3")
+
+[node name="Mirror" type="Sprite2D" parent="background"]
+position = Vector2(-393.001, -200)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("11_5ihvu")
+
+[node name="Laptop" type="Sprite2D" parent="background"]
+position = Vector2(104, -164)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("12_fij0p")
+
+[node name="Coathanger" type="Sprite2D" parent="background"]
+position = Vector2(288, -135)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("13_a1ajl")
+
+[node name="Chair" type="Sprite2D" parent="background"]
+position = Vector2(69, -120)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("14_otkw8")
+
+[node name="Bedside" type="Sprite2D" parent="background"]
+z_index = 6
+position = Vector2(23.0001, 136)
+texture = ExtResource("15_xba6u")
+
+[node name="interactables" type="Node2D" parent="."]
+
+[node name="bed" type="StaticBody2D" parent="interactables"]
+position = Vector2(503, 499)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bed"]
+position = Vector2(-503, -499)
+polygon = PackedVector2Array(545, 520, 660, 458, 467, 355, 370, 417)
+
+[node name="Futton" type="Sprite2D" parent="interactables/bed"]
+position = Vector2(10, -58)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("16_jtnc3")
+
+[node name="bed" type="Button" parent="interactables/bed"]
+offset_left = -29.0
+offset_top = -148.0
+offset_right = 157.0
+offset_bottom = -83.0
+rotation = 0.580761
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lll8i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7qfis")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kkrwe")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_26cq6")
+
+[node name="edoor" type="Area2D" parent="interactables"]
+script = ExtResource("17_v0sqk")
+dialog_text = "I don't feel like going out..."
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/edoor"]
+polygon = PackedVector2Array(863, 274, 862, 232, 961, 274, 961, 327)
+
+[node name="bdoor" type="Area2D" parent="interactables"]
+script = ExtResource("17_v0sqk")
+dialog_text = "I don't need to go to the bathroom right now."
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bdoor"]
+polygon = PackedVector2Array(46, 257, -2, 280, -4, 261, 47, 239)
+
+[node name="btnPC" type="Button" parent="."]
+offset_left = 581.0
+offset_top = 164.0
+offset_right = 632.0
+offset_bottom = 224.0
+rotation = 0.385965
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_verd3")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7u5yu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y1lsr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_okwcx")
+
+[node name="paint" type="Button" parent="."]
+offset_left = 795.0
+offset_top = 459.0
+offset_right = 857.0
+offset_bottom = 527.0
+mouse_default_cursor_shape = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_26cq6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7qfis")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kkrwe")
+theme_override_styles/normal = SubResource("StyleBoxTexture_sp1wp")
+
+[connection signal="pressed" from="interactables/bed/bed" to="." method="_on_bed_pressed"]
+[connection signal="pressed" from="paint" to="." method="_on_paint_pressed"]

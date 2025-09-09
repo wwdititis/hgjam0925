@@ -72,6 +72,8 @@ always_on_top = true
 dialog_text = "Click on the white blocks to learn a character"
 dialog_autowrap = true
 
+[node name="Line2D" type="Line2D" parent="."]
+
 [node name="DrawArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrawArea"]
@@ -79,14 +81,6 @@ position = Vector2(484.5, 171)
 shape = SubResource("RectangleShape2D_mgi27")
 
 [node name="LineContainer" type="Node2D" parent="."]
-
-[node name="btnEraser" type="Button" parent="."]
-offset_left = 455.0
-offset_top = 353.0
-offset_right = 513.0
-offset_bottom = 384.0
-text = "Eraser
-"
 
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="clear" to="." method="_on_clear_pressed"]

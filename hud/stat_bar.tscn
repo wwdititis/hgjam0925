@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://drhew4vkvum7f"]
+
+[ext_resource type="Script" uid="uid://degxigkd6i04p" path="res://hud/stat_bar.gd" id="1_h1xnh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teyau"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1xnh"]
+bg_color = Color(0.130124, 0.581464, 0.319768, 1)
+
+[node name="stat_bar" type="ProgressBar"]
+offset_right = 110.0
+offset_bottom = 10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_teyau")
+theme_override_styles/fill = SubResource("StyleBoxFlat_h1xnh")
+value = 100.0
+show_percentage = false
+script = ExtResource("1_h1xnh")
+
+[node name="lbstatBar" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 9
+text = "bar"
+horizontal_alignment = 1

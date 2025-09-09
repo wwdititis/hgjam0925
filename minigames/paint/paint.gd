@@ -1,13 +1,14 @@
 extends Node2D
 
-@onready var line2d: Line2D = $Line2D
-@onready var draw_area: Area2D = $DrawArea
+@onready var btnEraser: Button = $btnEraser
+var eraser_mode := false
 
+@onready var draw_area: Area2D = $DrawArea
+@onready var line_container: Node2D = $LineContainer
 var _pressed := false
 var current_line: Line2D = null
-
 # 🔹 grid size for snapping (1 = pixel-perfect, 4 = chunky pixel-art style)
-var grid_size: int = 1
+var grid_size: int = 16
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -17,14 +18,14 @@ func _input(event: InputEvent) -> void:
 				current_line = Line2D.new()
 				current_line.default_color = Color(0.0, 0.5, 1.0)
 				current_line.width = 16
-				line2d.add_child(current_line)
+				line_container.add_child(current_line)
 
 				# snap to grid
-				var p := line2d.to_local(snap_to_grid(event.position, grid_size))
+				var p := line_container.to_local(snap_to_grid(event.position, grid_size))
 
 				# 👇 add two points (tiny offset) so single clicks are visible
 				current_line.add_point(p)
-				current_line.add_point(p + Vector2(16, 0))
+				current_line.add_point(p + Vector2(16, 0)) # pixel dot
 		else:
 			_pressed = false
 			current_line = null
@@ -32,7 +33,7 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion and _pressed and current_line:
 		if can_draw_at(event.position):
 			var snapped := snap_to_grid(event.position, grid_size)
-			current_line.add_point(line2d.to_local(snapped))
+			current_line.add_point(line_container.to_local(snapped))
 
 
 # 🔹 Snap any position to grid
@@ -57,10 +58,14 @@ func can_draw_at(pos: Vector2) -> bool:
 			return true
 	return false
 
-
-func _on_reload_pressed() -> void:
-	get_tree().reload_current_scene()
-
+func _ready() -> void:
+	btnEraser.toggled.connect(func(toggled: bool):
+		eraser_mode = toggled
+	)
 
 func _on_exit_pressed() -> void:
-	pass # Replace with function body.
+	queue_free()
+
+func _on_clear_pressed() -> void:
+	for child in line_container.get_children():
+		child.queue_free()
