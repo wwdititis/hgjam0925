@@ -130,21 +130,19 @@ z_index = 6
 position = Vector2(23.0001, 136)
 texture = ExtResource("15_xba6u")
 
-[node name="interactables" type="Node2D" parent="."]
-
-[node name="bed" type="StaticBody2D" parent="interactables"]
+[node name="bed" type="StaticBody2D" parent="."]
 position = Vector2(503, 499)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bed"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="bed"]
 position = Vector2(-503, -499)
 polygon = PackedVector2Array(545, 520, 660, 458, 467, 355, 370, 417)
 
-[node name="Futton" type="Sprite2D" parent="interactables/bed"]
+[node name="Futton" type="Sprite2D" parent="bed"]
 position = Vector2(10, -58)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("16_jtnc3")
 
-[node name="bed" type="Button" parent="interactables/bed"]
+[node name="bed" type="Button" parent="bed"]
 offset_left = -29.0
 offset_top = -148.0
 offset_right = 157.0
@@ -156,14 +154,16 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_7qfis")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_kkrwe")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_26cq6")
 
-[node name="edoor" type="Area2D" parent="interactables"]
+[node name="interactables" type="Node2D" parent="."]
+
+[node name="edoor" type="Area2D" parent="interactables" groups=["interactables"]]
 script = ExtResource("17_v0sqk")
 dialog_text = "I don't feel like going out..."
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/edoor"]
 polygon = PackedVector2Array(863, 274, 862, 232, 961, 274, 961, 327)
 
-[node name="bdoor" type="Area2D" parent="interactables"]
+[node name="bdoor" type="Area2D" parent="interactables" groups=["interactables"]]
 script = ExtResource("17_v0sqk")
 dialog_text = "I don't need to go to the bathroom right now."
 
@@ -193,5 +193,5 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_7qfis")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_kkrwe")
 theme_override_styles/normal = SubResource("StyleBoxTexture_sp1wp")
 
-[connection signal="pressed" from="interactables/bed/bed" to="." method="_on_bed_pressed"]
+[connection signal="pressed" from="bed/bed" to="." method="_on_bed_pressed"]
 [connection signal="pressed" from="paint" to="." method="_on_paint_pressed"]

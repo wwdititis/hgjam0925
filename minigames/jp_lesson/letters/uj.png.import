@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uxp8uvg5786w"
-path="res://.godot/imported/aj.png-a921ad7b6169b676068fd5adc18a2748.ctex"
+uid="uid://boythunrv5eq"
+path="res://.godot/imported/uj.png-2a7433f4a82289e41bd0615c247546d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/jap/letters/aj.png"
-dest_files=["res://.godot/imported/aj.png-a921ad7b6169b676068fd5adc18a2748.ctex"]
+source_file="res://minigames/jp_lesson/letters/uj.png"
+dest_files=["res://.godot/imported/uj.png-2a7433f4a82289e41bd0615c247546d7.ctex"]
 
 [params]
 

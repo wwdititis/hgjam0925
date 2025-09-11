@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfatuuvqiis6s"]
 
-[ext_resource type="Script" uid="uid://boxtctkgdy7sh" path="res://minigames/jap/jap.gd" id="1_tpi1c"]
-[ext_resource type="Texture2D" uid="uid://c5kqijs3x8tbi" path="res://minigames/jap/bg.png" id="2_bb70n"]
+[ext_resource type="Script" uid="uid://boxtctkgdy7sh" path="res://minigames/jp_lesson/jp_lesson.gd" id="1_tq1yg"]
+[ext_resource type="Texture2D" uid="uid://c5kqijs3x8tbi" path="res://minigames/jp_lesson/bg.png" id="2_113pt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg4mj"]
 bg_color = Color(0.372769, 0.585461, 0.717237, 1)
@@ -11,8 +11,8 @@ bg_color = Color(0.372769, 0.585461, 0.717237, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs0uv"]
 size = Vector2(222, 8)
 
-[node name="Jap" type="Node2D"]
-script = ExtResource("1_tpi1c")
+[node name="Japanese Lesson" type="Node2D"]
+script = ExtResource("1_tq1yg")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -33,7 +33,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gg4mj")
 [node name="TextureRect" type="TextureRect" parent="PanelContainer"]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource("2_bb70n")
+texture = ExtResource("2_113pt")
 
 [node name="floor" type="StaticBody2D" parent="." groups=["floor"]]
 collision_layer = 2

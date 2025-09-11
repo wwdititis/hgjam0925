@@ -4,7 +4,6 @@ extends Node2D
 var scene_instance: Node = null
 
 func _on_paint_pressed() -> void:
-	Globals.currentSleep -= 10
 	scene_instance = Globals.PAINT.instantiate()
 	scene_instance.z_index = 1000
 	add_child(scene_instance)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://0eg05wx3xqpf"]
 
-[ext_resource type="Script" uid="uid://danvy0utsn66m" path="res://minigames/jap/fallingBlocks.gd" id="1_kjrxx"]
-[ext_resource type="Texture2D" uid="uid://b35ijc6o50cso" path="res://minigames/jap/letters/a.png" id="3_dihxo"]
-[ext_resource type="Script" uid="uid://c4foyrd1hdl7x" path="res://minigames/jap/click.gd" id="4_fgt75"]
+[ext_resource type="Script" uid="uid://danvy0utsn66m" path="res://minigames/jp_lesson/fallingBlocks.gd" id="1_kjrxx"]
+[ext_resource type="Texture2D" uid="uid://b35ijc6o50cso" path="res://minigames/jp_lesson/letters/a.png" id="3_dihxo"]
+[ext_resource type="Script" uid="uid://c4foyrd1hdl7x" path="res://minigames/jp_lesson/click.gd" id="4_fgt75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb70n"]
 size = Vector2(58, 65)

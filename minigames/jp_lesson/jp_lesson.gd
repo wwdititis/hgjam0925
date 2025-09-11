@@ -1,12 +1,12 @@
 extends Node2D
 
-var fallingBlock = preload("res://minigames/jap/fallingBlock.tscn")
-var blockSprites = {
-	"a": [preload("res://minigames/jap/letters/aj.png"),preload("res://minigames/jap/letters/a.png")],
-	"i": [preload("res://minigames/jap/letters/ij.png"),preload("res://minigames/jap/letters/i.png")],
-	"e": [preload("res://minigames/jap/letters/ij.png"),preload("res://minigames/jap/letters/i.png")],
-	"u": [preload("res://minigames/jap/letters/ij.png"),preload("res://minigames/jap/letters/i.png")],
-	"o": [preload("res://minigames/jap/letters/ij.png"),preload("res://minigames/jap/letters/i.png")],
+var fallingBlock := preload("res://minigames/jp_lesson/fallingBlock.tscn")
+var blockSprites := {
+	"a": [preload("res://minigames/jp_lesson/letters/aj.png"),preload("res://minigames/jp_lesson/letters/a.png")],
+	"i": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
+	"e": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
+	"u": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
+	"o": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
 }
 var lvl0 = false
 var PhaseI = false
