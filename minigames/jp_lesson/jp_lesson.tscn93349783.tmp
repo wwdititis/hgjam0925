@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfatuuvqiis6s"]
 
-[ext_resource type="Script" uid="uid://boxtctkgdy7sh" path="res://minigames/jp_lesson/jp_lesson.gd" id="1_113pt"]
-[ext_resource type="Texture2D" uid="uid://q2r0rw2ilros" path="res://minigames/jp_lesson/bg.png" id="2_qcq5s"]
+[ext_resource type="Script" uid="uid://boxtctkgdy7sh" path="res://zBackup/jp_lesson/jp_lesson.gd" id="1_113pt"]
+[ext_resource type="Texture2D" uid="uid://c5kqijs3x8tbi" path="res://zBackup/jp_lesson/bg.png" id="2_qcq5s"]
 [ext_resource type="PackedScene" uid="uid://sfmgup06nvhq" path="res://minigames/jp_lesson/states/state_manager.tscn" id="3_ytygp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg4mj"]
@@ -74,19 +74,6 @@ dialog_text = "Nice! You've learned that あ is equivalent to A"
 dialog_autowrap = true
 
 [node name="StateManager" parent="." instance=ExtResource("3_ytygp")]
-
-[node name="Label" type="Label" parent="."]
-offset_left = 695.0
-offset_top = 114.0
-offset_right = 742.0
-offset_bottom = 137.0
-text = "score:"
-
-[node name="lbscore" type="Label" parent="."]
-offset_left = 695.0
-offset_top = 138.0
-offset_right = 742.0
-offset_bottom = 161.0
 
 [connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
 [connection signal="confirmed" from="diag_tutorial" to="." method="_on_diag_tutorial_confirmed"]

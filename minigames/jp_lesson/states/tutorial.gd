@@ -1,11 +1,13 @@
 extends Node
 
 signal request_state_change(new_state : int)
+@onready var sm := get_parent()
 
 func enter(params : Dictionary = {}) -> void:
 	set_process(true)
 	# show UI, reset variables, start timers, etc.
 	print("Entered Tutorial")
+	sm.diag_tutorial.popup_centered()
 
 func exit() -> void:
 	set_process(false)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dxrbb6gbfx66s"]
+[gd_scene load_steps=7 format=3 uid="uid://dfatuuvqiis6s"]
 
-[ext_resource type="Script" uid="uid://boxtctkgdy7sh" path="res://minigames/jp_lesson/jp_lesson.gd" id="1_1nhq2"]
-[ext_resource type="Texture2D" uid="uid://c5kqijs3x8tbi" path="res://minigames/jp_lesson/bg.png" id="2_qcq5s"]
-[ext_resource type="PackedScene" uid="uid://sfmgup06nvhq" path="res://minigames/jp_lesson_state/states/state_machine.tscn" id="3_ytygp"]
+[ext_resource type="Script" uid="uid://boxtctkgdy7sh" path="res://minigames/jp_lesson/jp_lesson.gd" id="1_113pt"]
+[ext_resource type="Texture2D" uid="uid://c5kqijs3x8tbi" path="res://zBackup/jp_lesson/bg.png" id="2_qcq5s"]
+[ext_resource type="PackedScene" uid="uid://sfmgup06nvhq" path="res://minigames/jp_lesson/states/state_manager.tscn" id="3_ytygp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg4mj"]
 bg_color = Color(0.372769, 0.585461, 0.717237, 1)
@@ -12,8 +12,8 @@ bg_color = Color(0.372769, 0.585461, 0.717237, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fs0uv"]
 size = Vector2(222, 8)
 
-[node name="Japanese Lesson" type="Node2D"]
-script = ExtResource("1_1nhq2")
+[node name="JapaneseLesson" type="Node2D"]
+script = ExtResource("1_113pt")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8
@@ -54,17 +54,16 @@ position = Vector2(474, -108)
 position = Vector2(1, -29)
 shape = SubResource("RectangleShape2D_fs0uv")
 
-[node name="Howto" type="AcceptDialog" parent="."]
+[node name="diag_tutorial" type="AcceptDialog" parent="."]
 title = "How to Play"
 initial_position = 1
 size = Vector2i(300, 120)
-visible = true
 unresizable = true
 always_on_top = true
 dialog_text = "Click on the white blocks to learn a character"
 dialog_autowrap = true
 
-[node name="Phase1" type="AcceptDialog" parent="."]
+[node name="diag_lvl1" type="AcceptDialog" parent="."]
 auto_translate_mode = 1
 title = "How to Play"
 initial_position = 1
@@ -74,8 +73,8 @@ always_on_top = true
 dialog_text = "Nice! You've learned that あ is equivalent to A"
 dialog_autowrap = true
 
-[node name="StateMachine" parent="." instance=ExtResource("3_ytygp")]
+[node name="StateManager" parent="." instance=ExtResource("3_ytygp")]
 
 [connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
-[connection signal="confirmed" from="Howto" to="." method="_on_howto_confirmed"]
-[connection signal="confirmed" from="Phase1" to="." method="_on_phase1_confirmed"]
+[connection signal="confirmed" from="diag_tutorial" to="." method="_on_diag_tutorial_confirmed"]
+[connection signal="confirmed" from="diag_lvl1" to="." method="_on_diag_lvl1_confirmed"]

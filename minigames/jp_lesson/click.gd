@@ -12,19 +12,14 @@ func _input(event):
 	# Handle mouse enter / exit
 	if event is InputEventMouseMotion:
 		if inside and not mouse_inside:
-			print("Mouse entered sprite")
 			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 			mouse_inside = true
 		elif not inside and mouse_inside:
-			print("Mouse exited sprite")
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			mouse_inside = false
 
 	# Handle mouse click
 	if event is InputEventMouseButton:
 		if inside and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			print("Sprite clicked!")
-			sprite_clicked.emit()
-			block.queue_free()
-		elif not inside and mouse_inside:
-			print("Mouse exited sprite")				
+			emit_signal("sprite_clicked")
+			block.queue_free()			
