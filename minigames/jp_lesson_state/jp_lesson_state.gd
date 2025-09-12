@@ -10,7 +10,7 @@ var blockSprites := {
 }
 var lvl0 = false
 var PhaseI = false
-@onready var diag2: AcceptDialog = $Phase1
+@onready var diag2: AcceptDialog = $Howto2
 var newBlock
 @onready var timer: Timer = $Timer
 @onready var spawn_area: Area2D = $SpawnArea
@@ -46,9 +46,6 @@ func spawnBlock(pair: String, x: int) -> void:
 			sprite_clicked.connect("sprite_clicked", Callable(self, "spawnBlock"))
 		await get_tree().create_timer(5.0).timeout
 
-func _on_timer_timeout():
-	pass
-	#spawnBlock()
 
 func get_non_overlapping_position() -> Vector2:
 	var max_attempts = 20

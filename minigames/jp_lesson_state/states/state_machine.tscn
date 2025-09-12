@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://sfmgup06nvhq"]
+
+[ext_resource type="Script" uid="uid://b7436owsq4qun" path="res://minigames/jp_lesson_state/states/state_machine.gd" id="1_viein"]
+[ext_resource type="Script" uid="uid://bbyca68mnlqvb" path="res://minigames/jp_lesson_state/states/tutorial.gd" id="2_whg7i"]
+[ext_resource type="Script" uid="uid://caaqh386qfeoq" path="res://minigames/jp_lesson_state/states/level_one.gd" id="3_jnbmb"]
+[ext_resource type="Script" uid="uid://dedjgqqvfgvw7" path="res://minigames/jp_lesson_state/states/level_two.gd" id="4_6kx4c"]
+
+[node name="StateMachine" type="Node"]
+script = ExtResource("1_viein")
+
+[node name="Tutorial" type="Node" parent="."]
+script = ExtResource("2_whg7i")
+
+[node name="LevelOne" type="Node" parent="."]
+script = ExtResource("3_jnbmb")
+
+[node name="LevelTwo" type="Node" parent="."]
+script = ExtResource("4_6kx4c")
