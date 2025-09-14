@@ -21,5 +21,4 @@ func _input(event):
 	# Handle mouse click
 	if event is InputEventMouseButton:
 		if inside and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			emit_signal("sprite_clicked")
-			block.queue_free()			
+			emit_signal("sprite_clicked", self)

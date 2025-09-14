@@ -1,8 +1,10 @@
 extends Node
 class_name StateManager
 
-@onready var diag_tutorial: AcceptDialog = $"../diag_tutorial"
-@onready var diag_lvl1: AcceptDialog = $"../diag_lvl1"
+@onready var jp_lesson = get_parent()
+
+@onready var diag_tutorial0: AcceptDialog = $"../diag_tutorial0"
+@onready var diag_tutorial1: AcceptDialog = $"../diag_tutorial1"
 
 signal change_state(old_state: int, new_state: int)
 
@@ -24,6 +26,7 @@ func _enter_tree() -> void:
 	state_nodes[State.LevelTwo] = get_node_or_null("LevelTwo")
 
 func _ready() -> void:
+	Signals.connect("block_free", Callable(self, "_on_block_freed"))
 # Disable all states initially and connect their "request_state_change" signals (if present)
 	for node in state_nodes.values():
 		if node:
@@ -60,6 +63,9 @@ func _exit_state(s: int) -> void:
 		node.set_process(false)
 		node.set_physics_process(false)
 
+func _on_block_freed():
+	Globals.block_free += 1
+	print("Block freed! Count:", Globals.block_free)
 
 #func _process(delta: float) -> void:
 	#match current_state:
@@ -67,3 +73,23 @@ func _exit_state(s: int) -> void:
 			#pass
 		#State.LevelOne:
 			#pass
+
+func Tutorial():	
+	for i in range(3):
+		jp_lesson.spawn_doubleBlock("a",1)
+		await get_tree().create_timer(4.0).timeout
+
+func Lvl1():
+	jp_lesson.tutorial = false
+	jp_lesson.lvl1 = true
+	jp_lesson.spawn_tripleBlock("a",2)
+	await get_tree().create_timer(5.0).timeout
+	jp_lesson.spawn_tripleBlock("i",3)
+	await get_tree().create_timer(5.0).timeout
+
+
+func _on_diag_tutorial0_confirmed() -> void:
+	Tutorial()
+
+func _on_diag_tutorial1_confirmed() -> void:
+	Lvl1()

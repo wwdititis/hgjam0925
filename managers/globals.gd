@@ -16,6 +16,9 @@ var current_stat := {
 	"anxiety" = 100,
 }
 
+var block_free:int = 0
+var blocks_to_free:int
+
 # Signals
 signal global_event(event_name, data)
 func emit_event(event_name: String, data = null):

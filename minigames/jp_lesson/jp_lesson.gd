@@ -4,71 +4,134 @@ extends Node2D
 @onready var lbscore: Label = $lbscore
 var score:int = 0
 
-var fallingBlock := preload("res://minigames/jp_lesson/fallingBlock.tscn")
+var double_block := preload("res://minigames/jp_lesson/fallingBlock_double.tscn")
+var triple_block := preload("res://minigames/jp_lesson/fallingBlock_triple.tscn")
 var blockSprites := {
 	"a": [preload("res://minigames/jp_lesson/letters/aj.png"),preload("res://minigames/jp_lesson/letters/a.png")],
 	"i": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
-	"e": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
-	"u": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
-	"o": [preload("res://minigames/jp_lesson/letters/ij.png"),preload("res://minigames/jp_lesson/letters/i.png")],
+	"e": [preload("res://minigames/jp_lesson/letters/ej.png"),preload("res://minigames/jp_lesson/letters/e.png")],
+	"u": [preload("res://minigames/jp_lesson/letters/uj.png"),preload("res://minigames/jp_lesson/letters/u.png")],
+	"o": [preload("res://minigames/jp_lesson/letters/oj.png"),preload("res://minigames/jp_lesson/letters/o.png")],
 }
-var tutorial = false
-@onready var diag2: AcceptDialog = $Howto2
+var tutorial := true
+var lvl1 := false
+var lvl2 := false
+var lvl4 := false
 var newBlock
 var letter
 var remaining
-@onready var timer: Timer = $Timer
+var correct_block = false
+
 @onready var spawn_area: Area2D = $SpawnArea
 
 func _ready() -> void:
+	randomize()
 	sm.change_state_to(sm.State.Tutorial)
 	
-func Tutorial():	
-	for i in range(3):
-		spawnBlock("a",1)
-		await get_tree().create_timer(4.0).timeout
-	tutorial = false
-	sm.change_state_to(sm.State.LevelOne)
-		
-func Lvl1():
-	print("Start Lvl1")
-	spawnBlock("a",2)
-	await get_tree().create_timer(5.0).timeout
-	spawnBlock("i",3)
-	
 func Lvl2():
+	lvl1 = false
+	lvl2 = true
 	print("Start Lvl2")
-	spawnBlock("a",3)
+	spawn_tripleBlock("i",3)
 	await get_tree().create_timer(10.0).timeout
-	spawnBlock("i",3)
-	#timer.start()	
+	spawn_tripleBlock("a",3)
+	await get_tree().create_timer(10.0).timeout
+	spawn_tripleBlock("e",3)
 
-func spawnBlock(char: String, x: int) -> void:
+func spawn_doubleBlock(char: String, x: int) -> void:
 	letter = char
 	remaining = x
 	if remaining <= 0:
 		return
-	newBlock = fallingBlock.instantiate()
-	var sprite_clicked = newBlock.get_node("OP1sprite")
-	sprite_clicked.connect("sprite_clicked", Callable(self, "_skip_block"))
+	newBlock = double_block.instantiate()
+	var op1 = newBlock.get_node("OP1sprite")
+	op1.connect("sprite_clicked", Callable(self, "_skip_doubleBlock").bind(newBlock))
 	var spawn_position = get_non_overlapping_position()
 	newBlock.position = spawn_position
 	add_child(newBlock)
 	var sprite_paths = blockSprites[letter]
-	if sprite_paths.size() >= 1:
-		newBlock.get_node("JPsprite").texture = sprite_paths[0]
-	if sprite_paths.size() >= 2:
-		newBlock.get_node("OP1sprite").texture = sprite_paths[1]
+	newBlock.get_node("JPsprite").texture = sprite_paths[0]
+	newBlock.get_node("OP1sprite").texture = sprite_paths[1]
 	#if not tutorial:
-	print("waiting 5s")
+	#print("waiting 5s")
 	await get_tree().create_timer(5.0).timeout
-	spawnBlock(letter, remaining-1)
+	spawn_doubleBlock(letter, remaining-1)
+	
+func spawn_tripleBlock(char: String, x: int) -> void:
+	letter = char
+	remaining = x
+	if remaining <= 0:
+		return
+	newBlock = triple_block.instantiate()
+	var op1 = newBlock.get_node("OP1sprite")
+	var op2 = newBlock.get_node("OP2sprite")
+	op1.connect("sprite_clicked", Callable(self, "_is_correct").bind(newBlock))
+	op2.connect("sprite_clicked", Callable(self, "_is_correct").bind(newBlock))
+		
+	var spawn_position = get_non_overlapping_position()
+	newBlock.position = spawn_position
+	add_child(newBlock)
+	
+	# --- picks correct JP + romaji pair ---
+	var sprite_paths = blockSprites[letter]
+	var jp_sprite = sprite_paths[0]
+	var correct_romaji = sprite_paths[1]	
+	
+	# --- picks a random wrong romaji sprite ---
+	var wrong_romaji
+	if letter == "a":
+		var wrong = blockSprites["i"]
+		wrong_romaji = wrong[1]
+	else:
+		wrong_romaji = random_ENSprite(letter)	
+	
+	# --- randomizes positions ---
+	var romaji_options = [correct_romaji, wrong_romaji]
+	romaji_options.shuffle()
+	
+	# --- assigns ---
+	newBlock.get_node("JPsprite").texture = jp_sprite
+	newBlock.get_node("OP1sprite").texture = romaji_options[0]
+	newBlock.get_node("OP2sprite").texture = romaji_options[1]	
+	
+	# store which one is correct
+	if newBlock.get_node("OP1sprite").texture == correct_romaji:
+		newBlock.set_meta("correct_option", "OP1sprite")
+	else:
+		newBlock.set_meta("correct_option", "OP2sprite")	
+	
+	#if not tutorial:
+	#print("waiting 5s")
+	await get_tree().create_timer(5.0).timeout
+	spawn_tripleBlock(letter, remaining-1)	
 
-func _skip_block():
-	score += 1
-	lbscore.text = str(score)
-	print("Signal received in jp_lesson.gd")
-	spawnBlock(letter, remaining-1)
+func _is_correct(clicked_node: Node, block: Node):
+	var correct_node_name = block.get_meta("correct_option")
+	if clicked_node.name == correct_node_name:
+		score += 1
+		lbscore.text = str(score)
+		spawn_tripleBlock(letter, remaining-1)	
+		Signals.emit_signal("block_free")
+		block.call_deferred("queue_free")
+	else:
+		print("❌ Wrong!")	
+		block.gravity_scale = 3.0
+	
+func random_ENSprite(exclude_char: String):
+	var keys = blockSprites.keys()
+	if lvl4:
+		keys.erase(exclude_char)  # remove the excluded one
+		var random_key = keys[randi() % keys.size()]
+		return blockSprites[random_key][-1]
+	var index = keys.find(exclude_char)
+	var allowed_keys = keys.slice(0, index)
+	print("allowed keys:"+str(allowed_keys))
+	var random_key = allowed_keys[randi() % allowed_keys.size()]
+	return blockSprites[random_key][-1]
+
+func _skip_doubleBlock(block: Node):
+	print("clicked!")
+	block.call_deferred("queue_free")
 
 func get_non_overlapping_position() -> Vector2:
 	var max_attempts = 20
@@ -93,10 +156,3 @@ func get_random_point_in_area() -> Vector2:
 
 func _on_reload_pressed() -> void:
 	get_tree().reload_current_scene()
-
-func _on_diag_tutorial_confirmed() -> void:
-	#Tutorial()
-	Lvl1()
-
-func _on_diag_lvl1_confirmed() -> void:
-	Lvl2()
