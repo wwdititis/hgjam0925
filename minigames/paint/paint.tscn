@@ -1,13 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfatuuvqiis6s"]
+[gd_scene load_steps=19 format=3 uid="uid://dfatuuvqiis6s"]
 
 [ext_resource type="Script" uid="uid://dvgverhx81spi" path="res://minigames/paint/paint.gd" id="1_mgi27"]
-[ext_resource type="Texture2D" uid="uid://cp0pe1vuita74" path="res://minigames/paint/bgPaint.png" id="2_bibov"]
+[ext_resource type="Texture2D" uid="uid://donrn8x4d35vi" path="res://minigames/paint/Window_Header.png" id="2_coivw"]
+[ext_resource type="Texture2D" uid="uid://dktdfxtipfoj" path="res://minigames/paint/Windows_Button_Pressed_Outlined.png" id="2_jc4a6"]
+[ext_resource type="Texture2D" uid="uid://cx4s2wtqu0wjo" path="res://minigames/paint/Windows_Button_Pressed.png" id="3_4a778"]
+[ext_resource type="Texture2D" uid="uid://dnoqpxenhmqng" path="res://minigames/paint/Windows_SideBar_Underside.png" id="3_xvsfw"]
+[ext_resource type="Texture2D" uid="uid://dkgnti0mok1ku" path="res://minigames/paint/Windows_Button_Inactive.png" id="4_kyfyg"]
+[ext_resource type="Texture2D" uid="uid://c5fvue6ti1hex" path="res://minigames/paint/Windows_Icons.png" id="5_tfc7m"]
+[ext_resource type="Texture2D" uid="uid://cjf6pdrvm0hqk" path="res://minigames/paint/Window_Base.png" id="7_ebhlv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg4mj"]
-bg_color = Color(0.372769, 0.585461, 0.717237, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xvsfw"]
+texture = ExtResource("2_jc4a6")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgi27"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uy6hp"]
+texture = ExtResource("3_4a778")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ebhlv"]
+texture = ExtResource("4_kyfyg")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4a778"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jc4a6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgi27"]
 size = Vector2(271, 250)
@@ -17,55 +30,59 @@ size = Vector2(271, 250)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bibov"]
 bg_color = Color(1, 1, 1, 1)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvsfw"]
+texture = ExtResource("5_tfc7m")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ebhlv"]
+sources/0 = SubResource("TileSetAtlasSource_xvsfw")
+
 [node name="Paint" type="Node2D"]
 script = ExtResource("1_mgi27")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-z_index = -10
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 305.0
-offset_right = 655.0
-offset_bottom = 540.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gg4mj")
-
-[node name="PanelContainer2" type="PanelContainer" parent="."]
-z_index = -10
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 336.0
-offset_top = 32.0
-offset_right = 627.0
-offset_bottom = 313.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mgi27")
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer2"]
-visible = false
-layout_mode = 2
-texture = ExtResource("2_bibov")
-
 [node name="exit" type="Button" parent="."]
-offset_left = 759.0
-offset_top = 249.0
-offset_right = 817.0
-offset_bottom = 280.0
-text = "exit"
+offset_left = 940.0
+offset_top = 6.0
+offset_right = 955.0
+offset_bottom = 21.0
+theme_override_styles/hover = SubResource("StyleBoxTexture_xvsfw")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uy6hp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ebhlv")
 
 [node name="clear" type="Button" parent="."]
-offset_left = 123.0
-offset_top = 244.0
-offset_right = 181.0
-offset_bottom = 275.0
+offset_left = 676.0
+offset_top = 80.0
+offset_right = 734.0
+offset_bottom = 111.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4a778")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jc4a6")
+text = "clear"
+
+[node name="clear2" type="NinePatchRect" parent="clear"]
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 54.0
+offset_bottom = 29.0
+texture = ExtResource("7_ebhlv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Label" type="Label" parent="clear"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
 text = "clear"
 
 [node name="Howto" type="AcceptDialog" parent="."]
@@ -97,6 +114,83 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bibov")
 toggle_mode = true
 text = "eraser
 "
+
+[node name="bg" type="Node" parent="."]
+
+[node name="window" type="NinePatchRect" parent="bg"]
+z_index = -1
+offset_left = 1.0
+offset_right = 962.0
+offset_bottom = 540.0
+texture = ExtResource("2_coivw")
+patch_margin_left = 4
+patch_margin_top = 27
+patch_margin_right = 4
+patch_margin_bottom = 3
+
+[node name="ColorRect" type="ColorRect" parent="bg"]
+z_index = -1
+offset_left = 335.0
+offset_top = 31.0
+offset_right = 653.0
+offset_bottom = 331.0
+
+[node name="x" type="TileMapLayer" parent="bg"]
+position = Vector2(923, -27)
+tile_map_data = PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_ebhlv")
+
+[node name="sidebar_underside" type="TextureRect" parent="bg"]
+custom_minimum_size = Vector2(15, 0)
+offset_left = 637.0
+offset_top = 265.0
+offset_right = 653.0
+offset_bottom = 317.0
+texture = ExtResource("3_xvsfw")
+stretch_mode = 1
+
+[node name="btn_arrow_up" type="NinePatchRect" parent="bg"]
+offset_left = 637.0
+offset_top = 30.0
+offset_right = 653.0
+offset_bottom = 46.0
+texture = ExtResource("7_ebhlv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="scrollbar" type="NinePatchRect" parent="bg"]
+offset_left = 637.0
+offset_top = 45.0
+offset_right = 653.0
+offset_bottom = 269.0
+texture = ExtResource("7_ebhlv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="btn_arrow_down" type="NinePatchRect" parent="bg"]
+offset_left = 637.0
+offset_top = 315.0
+offset_right = 653.0
+offset_bottom = 331.0
+texture = ExtResource("7_ebhlv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="arrow_up" type="TileMapLayer" parent="bg"]
+position = Vector2(925, -18)
+tile_map_data = PackedByteArray(0, 0, 238, 255, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_ebhlv")
+
+[node name="arrow_down" type="TileMapLayer" parent="bg"]
+position = Vector2(925, -21)
+tile_map_data = PackedByteArray(0, 0, 238, 255, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_ebhlv")
 
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="clear" to="." method="_on_clear_pressed"]

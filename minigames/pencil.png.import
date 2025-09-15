@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvm5d7ggoo6xq"
-path="res://.godot/imported/pencil.png-7d60bb4c5f453c83ee6fd54052890352.ctex"
+uid="uid://da0l4apv0yqs4"
+path="res://.godot/imported/pencil.png-2dd67e3052bac355ac709826c06d4af6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/paint/pencil.png"
-dest_files=["res://.godot/imported/pencil.png-7d60bb4c5f453c83ee6fd54052890352.ctex"]
+source_file="res://minigames/pencil.png"
+dest_files=["res://.godot/imported/pencil.png-2dd67e3052bac355ac709826c06d4af6.ctex"]
 
 [params]
 

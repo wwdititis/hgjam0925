@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var hud: HUD = $HUD
+
 const PENCIL: Texture2D = preload("res://minigames/paint/pencil.png")
 const ERASER: Texture2D = preload("res://minigames/paint/eraser.png")
 
@@ -95,4 +97,5 @@ func _on_clear_pressed() -> void:
 func _on_exit_pressed() -> void:
 	Input.set_custom_mouse_cursor(Globals.CURSOR, Input.CURSOR_ARROW, Vector2(0,0))
 	Globals.emit_event("decrease_sleep", "paint.gd")
+	add_child(hud)
 	queue_free()
