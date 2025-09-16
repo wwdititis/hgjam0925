@@ -4,6 +4,7 @@ extends Node2D
 
 const PENCIL: Texture2D = preload("res://minigames/paint/pencil.png")
 const ERASER: Texture2D = preload("res://minigames/paint/eraser.png")
+var current_color: Color = Color.BLACK
 
 @onready var btnEraser: Button = $btnEraser
 var eraser_mode: bool = false
@@ -16,6 +17,10 @@ var current_line: Line2D = null
 # 🔹 grid size for snapping (1 = pixel-perfect, 4 = chunky pixel-art style)
 var grid_size: int = 16
 
+func _ready() -> void:
+	Input.set_custom_mouse_cursor(PENCIL, Input.CURSOR_ARROW, Vector2(0,0))
+	eraser_radius = grid_size * 0.75
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
@@ -26,7 +31,7 @@ func _input(event: InputEvent) -> void:
 				if can_draw_at(event.position):
 					_pressed = true
 					current_line = Line2D.new()
-					current_line.default_color = Color(0.0, 0.5, 1.0)
+					current_line.default_color = current_color
 					current_line.width = 16
 					line_container.add_child(current_line)
 					# snap to grid
@@ -77,9 +82,39 @@ func erase_at(global_pos: Vector2) -> void:
 					child.queue_free()
 					return  # remove only the first hit stroke; remove "return" to delete all matches	
 
-func _ready() -> void:
-	Input.set_custom_mouse_cursor(PENCIL, Input.CURSOR_ARROW, Vector2(0,0))
-	eraser_radius = grid_size * 0.75
+func save_as_image(line_container: Node2D, size: Vector2, path: String) -> ImageTexture:
+	# Create a SubViewport (instead of Viewport)
+	var viewport = SubViewport.new()
+	viewport.size = size
+	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+	viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
+	viewport.transparent_bg = false
+	add_child(viewport)  # temporarily add so it works
+	
+	# Add white background first
+	var bg := ColorRect.new()
+	bg.color = Color.WHITE
+	bg.size = size
+	bg.z_index = -1
+	viewport.add_child(bg)
+	
+	# Clone or reparent the line_container to the viewport
+	var temp_container = line_container.duplicate()
+	temp_container.position = Vector2.ZERO   # make sure it’s inside viewport
+	viewport.add_child(temp_container)
+	
+	await get_tree().process_frame
+	await get_tree().process_frame
+	  # let Godot render one frame
+	
+	# Get the image
+	var img = viewport.get_texture().get_image()
+	img.save_png(path)  # save to file
+	# Or keep it in memory:
+	var tex = ImageTexture.create_from_image(img)
+	# Cleanup
+	viewport.queue_free()
+	return tex
 
 func _on_btn_eraser_toggled(toggled_on: bool) -> void:
 	eraser_mode = toggled_on
@@ -90,12 +125,32 @@ func _on_btn_eraser_toggled(toggled_on: bool) -> void:
 	else:
 		Input.set_custom_mouse_cursor(PENCIL, Input.CURSOR_ARROW, Vector2(0,0))
 
-func _on_clear_pressed() -> void:
+func _on_btn_clear_pressed() -> void:
 	for child in line_container.get_children():
-		child.queue_free()		
+		child.queue_free()	
 
 func _on_exit_pressed() -> void:
 	Input.set_custom_mouse_cursor(Globals.CURSOR, Input.CURSOR_ARROW, Vector2(0,0))
 	Globals.emit_event("decrease_sleep", "paint.gd")
 	add_child(hud)
 	queue_free()
+
+func _on_btn_save_pressed() -> void:
+	var tex = await save_as_image($LineContainer, Vector2(512, 512), "res://drawing.png")
+	$SavedImage.texture = tex
+
+#region Color Buttons
+
+func _on_btn_black_pressed() -> void:
+	current_color = Color.BLACK
+
+func _on_btn_red_pressed() -> void:
+	current_color = Color.RED
+
+func _on_btn_blue_pressed() -> void:
+	current_color = Color.BLUE
+
+func _on_btn_yellow_pressed() -> void:
+	current_color = Color.YELLOW
+	
+#endregion

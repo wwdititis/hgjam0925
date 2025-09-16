@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfatuuvqiis6s"]
+[gd_scene load_steps=22 format=3 uid="uid://dfatuuvqiis6s"]
 
 [ext_resource type="Script" uid="uid://dvgverhx81spi" path="res://minigames/paint/paint.gd" id="1_mgi27"]
 [ext_resource type="Texture2D" uid="uid://donrn8x4d35vi" path="res://minigames/paint/Window_Header.png" id="2_coivw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dnoqpxenhmqng" path="res://minigames/paint/Windows_SideBar_Underside.png" id="3_xvsfw"]
 [ext_resource type="Texture2D" uid="uid://dkgnti0mok1ku" path="res://minigames/paint/Windows_Button_Inactive.png" id="4_kyfyg"]
 [ext_resource type="Texture2D" uid="uid://c5fvue6ti1hex" path="res://minigames/paint/Windows_Icons.png" id="5_tfc7m"]
+[ext_resource type="Texture2D" uid="uid://bb8dol0bqv6bc" path="res://minigames/paint/Windows_Inner_Frame_Inverted.png" id="6_4a778"]
 [ext_resource type="Texture2D" uid="uid://cjf6pdrvm0hqk" path="res://minigames/paint/Window_Base.png" id="7_ebhlv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xvsfw"]
@@ -23,12 +24,25 @@ texture = ExtResource("4_kyfyg")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jc4a6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgi27"]
-size = Vector2(271, 250)
+size = Vector2(271, 252)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bibov"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uy6hp"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bibov"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o17vf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4a778"]
+texture = ExtResource("2_jc4a6")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jc4a6"]
+texture = ExtResource("6_4a778")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xvsfw"]
 texture = ExtResource("5_tfc7m")
@@ -55,16 +69,17 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_xvsfw")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_uy6hp")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ebhlv")
 
-[node name="clear" type="Button" parent="."]
-offset_left = 676.0
-offset_top = 80.0
-offset_right = 734.0
-offset_bottom = 111.0
+[node name="btn_clear" type="Button" parent="."]
+offset_left = 255.0
+offset_top = 165.0
+offset_right = 313.0
+offset_bottom = 196.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_4a778")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jc4a6")
 text = "clear"
 
-[node name="clear2" type="NinePatchRect" parent="clear"]
+[node name="9clear" type="NinePatchRect" parent="btn_clear"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 5.0
 offset_right = 54.0
@@ -75,7 +90,7 @@ patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
 
-[node name="Label" type="Label" parent="clear"]
+[node name="lbclear" type="Label" parent="btn_clear"]
 layout_mode = 0
 offset_left = 14.0
 offset_top = 8.0
@@ -97,23 +112,191 @@ dialog_autowrap = true
 [node name="DrawArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DrawArea"]
-position = Vector2(484.5, 171)
+position = Vector2(484.5, 172)
 shape = SubResource("RectangleShape2D_mgi27")
 
 [node name="LineContainer" type="Node2D" parent="."]
 
-[node name="btnEraser" type="Button" parent="."]
-offset_left = 455.0
-offset_top = 353.0
-offset_right = 513.0
-offset_bottom = 384.0
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bibov")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_bibov")
+[node name="btn_eraser" type="Button" parent="."]
+offset_left = 677.0
+offset_top = 166.0
+offset_right = 735.0
+offset_bottom = 197.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uy6hp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o17vf")
 toggle_mode = true
-text = "eraser
+text = "
 "
+
+[node name="9eraser" type="NinePatchRect" parent="btn_eraser"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -12.0
+offset_right = 25.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ebhlv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="lberaser" type="Label" parent="btn_eraser"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -10.5
+offset_right = 24.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "erase"
+
+[node name="btn_save" type="Button" parent="."]
+offset_left = 255.0
+offset_top = 219.0
+offset_right = 313.0
+offset_bottom = 250.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uy6hp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_o17vf")
+text = "
+"
+
+[node name="9save" type="NinePatchRect" parent="btn_save"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -12.0
+offset_right = 25.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_ebhlv")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="lbsave" type="Label" parent="btn_save"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -10.5
+offset_right = 24.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "save"
+
+[node name="ColorButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 367.0
+offset_top = 358.0
+offset_right = 407.0
+offset_bottom = 398.0
+
+[node name="GridContainer" type="GridContainer" parent="ColorButtons"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -5.0
+offset_right = 193.0
+offset_bottom = 28.0
+columns = 4
+
+[node name="btn_black" type="Button" parent="ColorButtons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/hover = SubResource("StyleBoxTexture_4a778")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jc4a6")
+text = "
+"
+
+[node name="black" type="ColorRect" parent="ColorButtons/GridContainer/btn_black"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="btn_red" type="Button" parent="ColorButtons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/hover = SubResource("StyleBoxTexture_4a778")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jc4a6")
+text = "
+"
+
+[node name="red" type="ColorRect" parent="ColorButtons/GridContainer/btn_red"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+
+[node name="btn_blue" type="Button" parent="ColorButtons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/hover = SubResource("StyleBoxTexture_4a778")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jc4a6")
+text = "
+"
+
+[node name="blue" type="ColorRect" parent="ColorButtons/GridContainer/btn_blue"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+color = Color(0, 0.255651, 1, 1)
+
+[node name="btn_yellow" type="Button" parent="ColorButtons/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/hover = SubResource("StyleBoxTexture_4a778")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jc4a6")
+text = "
+"
+
+[node name="yellow" type="ColorRect" parent="ColorButtons/GridContainer/btn_yellow"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 31.0
+offset_bottom = 31.0
+mouse_filter = 2
+color = Color(1, 0.885502, 0, 1)
 
 [node name="bg" type="Node" parent="."]
 
@@ -192,7 +375,15 @@ position = Vector2(925, -21)
 tile_map_data = PackedByteArray(0, 0, 238, 255, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_ebhlv")
 
+[node name="SavedImage" type="Sprite2D" parent="."]
+position = Vector2(79, 285)
+
 [connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="btn_clear" to="." method="_on_btn_clear_pressed"]
 [connection signal="confirmed" from="Howto" to="." method="_on_howto_confirmed"]
-[connection signal="toggled" from="btnEraser" to="." method="_on_btn_eraser_toggled"]
+[connection signal="toggled" from="btn_eraser" to="." method="_on_btn_eraser_toggled"]
+[connection signal="pressed" from="btn_save" to="." method="_on_btn_save_pressed"]
+[connection signal="pressed" from="ColorButtons/GridContainer/btn_black" to="." method="_on_btn_black_pressed"]
+[connection signal="pressed" from="ColorButtons/GridContainer/btn_red" to="." method="_on_btn_red_pressed"]
+[connection signal="pressed" from="ColorButtons/GridContainer/btn_blue" to="." method="_on_btn_blue_pressed"]
+[connection signal="pressed" from="ColorButtons/GridContainer/btn_yellow" to="." method="_on_btn_yellow_pressed"]
