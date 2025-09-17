@@ -16,6 +16,7 @@ var blockSprites := {
 var tutorial := true
 var lvl1 := false
 var lvl2 := false
+var lvl3 := false
 var lvl4 := false
 var newBlock
 var letter
@@ -27,19 +28,9 @@ var correct_block = false
 func _ready() -> void:
 	randomize()
 	sm.change_state_to(sm.State.Tutorial)
-	
-func Lvl2():
-	lvl1 = false
-	lvl2 = true
-	print("Start Lvl2")
-	spawn_tripleBlock("i",3)
-	await get_tree().create_timer(10.0).timeout
-	spawn_tripleBlock("a",3)
-	await get_tree().create_timer(10.0).timeout
-	spawn_tripleBlock("e",3)
 
-func spawn_doubleBlock(char: String, x: int) -> void:
-	letter = char
+func spawn_doubleBlock(vowel: String, x: int) -> void:
+	letter = vowel
 	remaining = x
 	if remaining <= 0:
 		return
@@ -48,17 +39,16 @@ func spawn_doubleBlock(char: String, x: int) -> void:
 	op1.connect("sprite_clicked", Callable(self, "_skip_doubleBlock").bind(newBlock))
 	var spawn_position = get_non_overlapping_position()
 	newBlock.position = spawn_position
+	newBlock.gravity_scale = 0.05
 	add_child(newBlock)
 	var sprite_paths = blockSprites[letter]
 	newBlock.get_node("JPsprite").texture = sprite_paths[0]
 	newBlock.get_node("OP1sprite").texture = sprite_paths[1]
-	#if not tutorial:
-	#print("waiting 5s")
 	await get_tree().create_timer(5.0).timeout
 	spawn_doubleBlock(letter, remaining-1)
 	
-func spawn_tripleBlock(char: String, x: int) -> void:
-	letter = char
+func spawn_tripleBlock(vowel: String, x: int) -> void:
+	letter = vowel
 	remaining = x
 	if remaining <= 0:
 		return
@@ -67,9 +57,9 @@ func spawn_tripleBlock(char: String, x: int) -> void:
 	var op2 = newBlock.get_node("OP2sprite")
 	op1.connect("sprite_clicked", Callable(self, "_is_correct").bind(newBlock))
 	op2.connect("sprite_clicked", Callable(self, "_is_correct").bind(newBlock))
-		
 	var spawn_position = get_non_overlapping_position()
 	newBlock.position = spawn_position
+	newBlock.gravity_scale = 0.05
 	add_child(newBlock)
 	
 	# --- picks correct JP + romaji pair ---
@@ -108,8 +98,7 @@ func spawn_tripleBlock(char: String, x: int) -> void:
 func _is_correct(clicked_node: Node, block: Node):
 	var correct_node_name = block.get_meta("correct_option")
 	if clicked_node.name == correct_node_name:
-		score += 1
-		lbscore.text = str(score)
+		update_score(1)
 		spawn_tripleBlock(letter, remaining-1)	
 		Signals.emit_signal("block_free")
 		block.call_deferred("queue_free")
@@ -119,18 +108,20 @@ func _is_correct(clicked_node: Node, block: Node):
 	
 func random_ENSprite(exclude_char: String):
 	var keys = blockSprites.keys()
+	var random_key
 	if lvl4:
 		keys.erase(exclude_char)  # remove the excluded one
-		var random_key = keys[randi() % keys.size()]
+		random_key = keys[randi() % keys.size()]
 		return blockSprites[random_key][-1]
 	var index = keys.find(exclude_char)
 	var allowed_keys = keys.slice(0, index)
 	print("allowed keys:"+str(allowed_keys))
-	var random_key = allowed_keys[randi() % allowed_keys.size()]
+	random_key = allowed_keys[randi() % allowed_keys.size()]
 	return blockSprites[random_key][-1]
 
-func _skip_doubleBlock(block: Node):
-	print("clicked!")
+func _skip_doubleBlock(_clicked_node: Node, block: Node):
+	update_score(1)
+	Signals.emit_signal("block_free")
 	block.call_deferred("queue_free")
 
 func get_non_overlapping_position() -> Vector2:
@@ -153,6 +144,10 @@ func get_random_point_in_area() -> Vector2:
 	var local_x = randf_range(-extents.x, extents.x)
 	var local_y = randf_range(-extents.y, extents.y)
 	return spawn_area.global_position + Vector2(local_x, local_y)
+
+func update_score(x:int):
+	score += x
+	lbscore.text = str(score)
 
 func _on_reload_pressed() -> void:
 	get_tree().reload_current_scene()

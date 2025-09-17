@@ -20,11 +20,6 @@ config/icon="res://icon.svg"
 Globals="*res://managers/globals.gd"
 Signals="*res://managers/signals.gd"
 
-[debug]
-
-gdscript/warnings/untyped_declaration=1
-gdscript/warnings/inferred_declaration=1
-
 [display]
 
 window/size/viewport_width=960

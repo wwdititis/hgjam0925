@@ -73,6 +73,16 @@ always_on_top = true
 dialog_text = "Nice! You've learned that あ is equivalent to A"
 dialog_autowrap = true
 
+[node name="diag_tutorial2" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+title = "How to Play"
+initial_position = 1
+size = Vector2i(300, 120)
+unresizable = true
+always_on_top = true
+dialog_text = "You got it! Keep going!"
+dialog_autowrap = true
+
 [node name="StateManager" parent="." instance=ExtResource("3_ytygp")]
 
 [node name="Label" type="Label" parent="."]
@@ -91,3 +101,4 @@ offset_bottom = 166.0
 [connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
 [connection signal="confirmed" from="diag_tutorial0" to="StateManager" method="_on_diag_tutorial0_confirmed"]
 [connection signal="confirmed" from="diag_tutorial1" to="StateManager" method="_on_diag_tutorial1_confirmed"]
+[connection signal="confirmed" from="diag_tutorial2" to="StateManager" method="_on_diag_tutorial2_confirmed"]
