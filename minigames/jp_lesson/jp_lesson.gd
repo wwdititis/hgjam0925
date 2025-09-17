@@ -90,18 +90,17 @@ func spawn_tripleBlock(vowel: String, x: int) -> void:
 	else:
 		newBlock.set_meta("correct_option", "OP2sprite")	
 	
-	#if not tutorial:
-	#print("waiting 5s")
-	await get_tree().create_timer(5.0).timeout
+	print("waiting 7s")
+	await get_tree().create_timer(7.0).timeout
 	spawn_tripleBlock(letter, remaining-1)	
 
 func _is_correct(clicked_node: Node, block: Node):
 	var correct_node_name = block.get_meta("correct_option")
 	if clicked_node.name == correct_node_name:
 		update_score(1)
-		spawn_tripleBlock(letter, remaining-1)	
 		Signals.emit_signal("block_free")
 		block.call_deferred("queue_free")
+		spawn_tripleBlock(letter, remaining-1)	
 	else:
 		print("❌ Wrong!")	
 		block.gravity_scale = 3.0

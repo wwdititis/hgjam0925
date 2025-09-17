@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfatuuvqiis6s"]
+[gd_scene load_steps=8 format=3 uid="uid://dfatuuvqiis6s"]
 
 [ext_resource type="Script" uid="uid://boxtctkgdy7sh" path="res://minigames/jp_lesson/jp_lesson.gd" id="1_113pt"]
 [ext_resource type="Texture2D" uid="uid://q2r0rw2ilros" path="res://minigames/jp_lesson/bg.png" id="2_qcq5s"]
+[ext_resource type="Theme" uid="uid://bvbnuvj1fp6eu" path="res://minigames/jp_lesson/jp_diag_theme.tres" id="3_1ojgs"]
 [ext_resource type="PackedScene" uid="uid://sfmgup06nvhq" path="res://minigames/jp_lesson/states/state_manager.tscn" id="3_ytygp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gg4mj"]
@@ -42,9 +43,9 @@ shape = SubResource("WorldBoundaryShape2D_dyycs")
 
 [node name="reload" type="Button" parent="."]
 offset_left = 123.0
-offset_top = 244.0
+offset_top = 56.0
 offset_right = 181.0
-offset_bottom = 275.0
+offset_bottom = 87.0
 text = "reload"
 
 [node name="SpawnArea" type="Area2D" parent="."]
@@ -55,11 +56,13 @@ position = Vector2(1, -29)
 shape = SubResource("RectangleShape2D_fs0uv")
 
 [node name="diag_tutorial0" type="AcceptDialog" parent="."]
+oversampling_override = 1.0
 title = "How to Play"
 initial_position = 1
 size = Vector2i(300, 120)
 unresizable = true
 always_on_top = true
+theme = ExtResource("3_1ojgs")
 dialog_text = "Click on the white blocks to learn a character"
 dialog_autowrap = true
 
@@ -98,7 +101,41 @@ offset_top = 143.0
 offset_right = 746.0
 offset_bottom = 166.0
 
+[node name="alert" type="ColorRect" parent="."]
+visible = false
+offset_left = 324.0
+offset_top = 180.0
+offset_right = 640.0
+offset_bottom = 337.0
+
+[node name="lb_alert" type="Label" parent="alert"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "oi"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="btn_alert" type="Button" parent="alert"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 8.0
+offset_right = 307.0
+offset_bottom = 39.0
+text = "x"
+
 [connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
 [connection signal="confirmed" from="diag_tutorial0" to="StateManager" method="_on_diag_tutorial0_confirmed"]
 [connection signal="confirmed" from="diag_tutorial1" to="StateManager" method="_on_diag_tutorial1_confirmed"]
 [connection signal="confirmed" from="diag_tutorial2" to="StateManager" method="_on_diag_tutorial2_confirmed"]
+[connection signal="pressed" from="alert/btn_alert" to="StateManager" method="_on_btn_alert_pressed"]

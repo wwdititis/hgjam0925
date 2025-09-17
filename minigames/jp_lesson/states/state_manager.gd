@@ -6,6 +6,8 @@ class_name StateManager
 @onready var diag_tutorial0: AcceptDialog = $"../diag_tutorial0"
 @onready var diag_tutorial1: AcceptDialog = $"../diag_tutorial1"
 @onready var diag_tutorial2: AcceptDialog = $"../diag_tutorial2"
+@onready var alert: ColorRect = $"../alert"
+@onready var lb_alert: Label = $"../alert/lb_alert"
 
 signal change_state(old_state: int, new_state: int)
 
@@ -34,6 +36,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	Signals.connect("block_free", Callable(self, "_on_block_freed"))
+	Signals.connect("alert_jplesson", Callable(self, "_on_alert"))
 # Disable all states initially and connect their "request_state_change" signals (if present)
 	for node in state_nodes.values():
 		if node:
@@ -74,48 +77,20 @@ func _on_block_freed():
 	Globals.block_free += 1
 	print("Block freed! Count:", Globals.block_free)
 
-func Tutorial():	
-	for i in range(3):
-		jp_lesson.spawn_doubleBlock("a",1)
-		await get_tree().create_timer(4.0).timeout
-
-func Lvl1():
-	jp_lesson.tutorial = false
-	jp_lesson.lvl1 = true
-	jp_lesson.spawn_doubleBlock("a",2)
-	await get_tree().create_timer(5.0).timeout
-	jp_lesson.spawn_doubleBlock("i",3)
-	await get_tree().create_timer(5.0).timeout
-
-func Lvl2():
-	jp_lesson.lvl1 = false
-	jp_lesson.lvl2 = true
-	jp_lesson.spawn_tripleBlock("a",2)
-	await get_tree().create_timer(7.0).timeout
-	jp_lesson.spawn_tripleBlock("i",2)
-	await get_tree().create_timer(5.0).timeout
-	
-func Lvl3():
-	jp_lesson.lvl2 = false
-	jp_lesson.lvl3 = true
-	jp_lesson.spawn_tripleBlock("i",2)
-	await get_tree().create_timer(7.0).timeout
-	jp_lesson.spawn_tripleBlock("e",3)
-	await get_tree().create_timer(5.0).timeout	
-	
-func Lvl4():
-	jp_lesson.lvl3 = false
-	jp_lesson.lvl4 = true
-	jp_lesson.spawn_tripleBlock("e",2)
-	await get_tree().create_timer(7.0).timeout
-	jp_lesson.spawn_tripleBlock("u",3)
-	await get_tree().create_timer(5.0).timeout		
-
 func _on_diag_tutorial0_confirmed() -> void:
-	Tutorial()
+	$Tutorial.Tutorial()
 
 func _on_diag_tutorial1_confirmed() -> void:
-	Lvl1()
+	$LevelOne.Lvl1()
 
 func _on_diag_tutorial2_confirmed() -> void:
-	Lvl2()
+	$LevelTwo.Lvl2()
+
+func _on_btn_alert_pressed() -> void:
+	Signals.emit_signal("alert_jplesson")
+	
+func _on_alert():	
+	alert.visible = false
+
+func message_alert(message:String):	
+	lb_alert.text = message
