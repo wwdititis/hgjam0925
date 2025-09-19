@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://kr6dttktdv22"]
+[gd_scene load_steps=11 format=3 uid="uid://kr6dttktdv22"]
 
 [ext_resource type="Script" uid="uid://drgprgkggmm8g" path="res://minigames/jp_lesson/fallingBlocks.gd" id="1_f2b2k"]
-[ext_resource type="Texture2D" uid="uid://d37fwcy3mi4ms" path="res://minigames/jp_lesson/letters/aj.png" id="2_r1rwa"]
-[ext_resource type="Texture2D" uid="uid://bf7s2hmk8cqa5" path="res://minigames/jp_lesson/letters/a.png" id="3_ii20p"]
-[ext_resource type="Script" uid="uid://bm1ar27ru2yr6" path="res://minigames/jp_lesson/click.gd" id="4_xramy"]
+[ext_resource type="Texture2D" uid="uid://tl5epuxxmm3" path="res://minigames/jp_lesson/letters/aj.png" id="2_r1rwa"]
+[ext_resource type="Texture2D" uid="uid://74343yxg537p" path="res://minigames/jp_lesson/letters/a.png" id="3_ii20p"]
+[ext_resource type="Script" uid="uid://chonidri1256w" path="res://minigames/jp_lesson/block_click.gd" id="6_xramy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb70n"]
 size = Vector2(58, 65)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2b2k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r1rwa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ii20p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xramy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpf43"]
 
 [node name="fBlock" type="RigidBody2D"]
 collision_mask = 2
@@ -25,11 +35,21 @@ texture = ExtResource("2_r1rwa")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bb70n")
 
-[node name="OP1sprite" type="Sprite2D" parent="."]
-position = Vector2(1, 64)
+[node name="OP1_btn" type="Button" parent="."]
+offset_left = -32.0
+offset_top = 28.0
+offset_right = 32.0
+offset_bottom = 92.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f2b2k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_r1rwa")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ii20p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xramy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gpf43")
+flat = true
+script = ExtResource("6_xramy")
+
+[node name="OP1sprite" type="Sprite2D" parent="OP1_btn"]
+position = Vector2(32, 31)
 texture = ExtResource("3_ii20p")
-script = ExtResource("4_xramy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

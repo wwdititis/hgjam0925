@@ -1,21 +1,25 @@
 extends Sprite2D
 
 signal sprite_clicked
-@onready var block: RigidBody2D = $".."
+#@onready var block: RigidBody2D = $".."
 
 var mouse_inside := false
 
 func _input(event):
+	if not texture:
+		return
 	var pos = get_local_mouse_position()
-	var inside = is_pixel_opaque(pos)
+	var rect = Rect2(Vector2.ZERO, texture.get_size())
+	var inside = rect.has_point(pos)
+
 
 	# Handle mouse enter / exit
 	if event is InputEventMouseMotion:
 		if inside and not mouse_inside:
-			Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+			Input.set_custom_mouse_cursor(Globals.CURSOR_HAND)
 			mouse_inside = true
 		elif not inside and mouse_inside:
-			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+			Input.set_custom_mouse_cursor(Globals.CURSOR_ARROW)
 			mouse_inside = false
 
 	# Handle mouse click

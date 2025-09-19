@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var sm: StateManager = $StateManager
-@onready var lbscore: Label = $lbscore
+@onready var lbscore: Label = $HBoxContainer/lbscore
 var score:int = 0
 
 var double_block := preload("res://minigames/jp_lesson/fallingBlock_double.tscn")
@@ -35,15 +35,17 @@ func spawn_doubleBlock(vowel: String, x: int) -> void:
 	if remaining <= 0:
 		return
 	newBlock = double_block.instantiate()
-	var op1 = newBlock.get_node("OP1sprite")
-	op1.connect("sprite_clicked", Callable(self, "_skip_doubleBlock").bind(newBlock))
+	var jpsprite = newBlock.get_node("JPsprite")
+	var op1_btn = newBlock.get_node("OP1_btn")
+	var op1_sprite = newBlock.get_node("OP1_btn/OP1sprite")
+	op1_btn.connect("block_clicked", Callable(self, "_skip_doubleBlock").bind(newBlock))
 	var spawn_position = get_non_overlapping_position()
 	newBlock.position = spawn_position
 	newBlock.gravity_scale = 0.05
 	add_child(newBlock)
 	var sprite_paths = blockSprites[letter]
-	newBlock.get_node("JPsprite").texture = sprite_paths[0]
-	newBlock.get_node("OP1sprite").texture = sprite_paths[1]
+	jpsprite.texture = sprite_paths[0]
+	op1_sprite.texture = sprite_paths[1]
 	await get_tree().create_timer(5.0).timeout
 	spawn_doubleBlock(letter, remaining-1)
 	
@@ -53,10 +55,13 @@ func spawn_tripleBlock(vowel: String, x: int) -> void:
 	if remaining <= 0:
 		return
 	newBlock = triple_block.instantiate()
-	var op1 = newBlock.get_node("OP1sprite")
-	var op2 = newBlock.get_node("OP2sprite")
-	op1.connect("sprite_clicked", Callable(self, "_is_correct").bind(newBlock))
-	op2.connect("sprite_clicked", Callable(self, "_is_correct").bind(newBlock))
+	var jpsprite = newBlock.get_node("JPsprite")
+	var op1_btn = newBlock.get_node("OP1_btn")
+	var op1_sprite = newBlock.get_node("OP1_btn/OP1sprite")
+	var op2_btn = newBlock.get_node("OP2_btn")
+	var op2_sprite = newBlock.get_node("OP2_btn/OP2sprite")	
+	op1_btn.connect("block_clicked", Callable(self, "_is_correct").bind(newBlock))
+	op2_btn.connect("block_clicked", Callable(self, "_is_correct").bind(newBlock))
 	var spawn_position = get_non_overlapping_position()
 	newBlock.position = spawn_position
 	newBlock.gravity_scale = 0.05
@@ -64,7 +69,7 @@ func spawn_tripleBlock(vowel: String, x: int) -> void:
 	
 	# --- picks correct JP + romaji pair ---
 	var sprite_paths = blockSprites[letter]
-	var jp_sprite = sprite_paths[0]
+	var jp_char = sprite_paths[0]
 	var correct_romaji = sprite_paths[1]	
 	
 	# --- picks a random wrong romaji sprite ---
@@ -80,12 +85,12 @@ func spawn_tripleBlock(vowel: String, x: int) -> void:
 	romaji_options.shuffle()
 	
 	# --- assigns ---
-	newBlock.get_node("JPsprite").texture = jp_sprite
-	newBlock.get_node("OP1sprite").texture = romaji_options[0]
-	newBlock.get_node("OP2sprite").texture = romaji_options[1]	
+	jpsprite.texture = jp_char
+	op1_sprite.texture = romaji_options[0]
+	op2_sprite.texture = romaji_options[1]	
 	
 	# store which one is correct
-	if newBlock.get_node("OP1sprite").texture == correct_romaji:
+	if op1_sprite.texture == correct_romaji:
 		newBlock.set_meta("correct_option", "OP1sprite")
 	else:
 		newBlock.set_meta("correct_option", "OP2sprite")	

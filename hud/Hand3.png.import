@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsvbnws3gxewa"
-path="res://.godot/imported/ej.png-893efd08f5aef7e751a45c6b613763ec.ctex"
+uid="uid://c6pmi1jd2fibf"
+path="res://.godot/imported/Hand3.png-9bd5b5e57247a649045f09083cefbb63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://minigames/jp_lesson/letters/ej.png"
-dest_files=["res://.godot/imported/ej.png-893efd08f5aef7e751a45c6b613763ec.ctex"]
+source_file="res://hud/Hand3.png"
+dest_files=["res://.godot/imported/Hand3.png-9bd5b5e57247a649045f09083cefbb63.ctex"]
 
 [params]
 

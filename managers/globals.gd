@@ -6,7 +6,8 @@ const MESSAGES := preload("res://hud/messages.tscn")
 const PAINT := preload("res://minigames/paint/paint.tscn")
 const GAMEOVER := preload("res://managers/gameover.tscn")
 
-const CURSOR: Texture2D = preload("res://hud/Arrow2.png")
+const CURSOR_ARROW: Texture2D = preload("res://hud/Arrow2.png")
+const CURSOR_HAND: Texture2D = preload("res://hud/Hand3.png")
 
 var current_stat := {
 	"sleep" = 100,
