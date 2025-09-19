@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://74343yxg537p" path="res://minigames/jp_lesson/letters/a.png" id="3_qyucr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb70n"]
-size = Vector2(58, 65)
+size = Vector2(58, 177.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2b2k"]
 
@@ -33,6 +33,7 @@ texture_filter = 1
 texture = ExtResource("2_l8akv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 56.25)
 shape = SubResource("RectangleShape2D_bb70n")
 
 [node name="OP1_btn" type="Button" parent="."]

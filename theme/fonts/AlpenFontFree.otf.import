@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ck0aldn7dou6u"
-path="res://.godot/imported/DotGothic16-Regular.ttf-c75b265808b272d688d3f458275835cc.fontdata"
+uid="uid://ccinyqano2qsr"
+path="res://.godot/imported/AlpenFontFree.otf-3b308941f3aad3982ebc5d49e3a56d45.fontdata"
 
 [deps]
 
-source_file="res://fonts/DotGothic16-Regular.ttf"
-dest_files=["res://.godot/imported/DotGothic16-Regular.ttf-c75b265808b272d688d3f458275835cc.fontdata"]
+source_file="res://theme/fonts/AlpenFontFree.otf"
+dest_files=["res://.godot/imported/AlpenFontFree.otf-3b308941f3aad3982ebc5d49e3a56d45.fontdata"]
 
 [params]
 
@@ -21,6 +21,7 @@ msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
+modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true

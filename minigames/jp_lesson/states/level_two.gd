@@ -10,7 +10,7 @@ func enter(_params : Dictionary = {}) -> void:
 	set_process(true)
 	print("Entered LevelTwo")
 	Globals.blocks_to_free = 7
-	sm.diag_tutorial2.popup_centered()
+	sm.set_diag("Ready for your first test?","ok")
 
 func Lvl2():
 	parent.lvl1 = false
@@ -27,9 +27,8 @@ func exit() -> void:
 func _process(_delta: float) -> void:
 	if Globals.block_free == 4:
 		Globals.block_free +=1
-		alert.visible = true
-		sm.message_alert("Time to learn a new vowel!")
-		await alert.visibility_changed		
+		sm.set_diag2("Time to learn a new vowel!","ok")
+		await sm.diag2.visibility_changed		
 		for i in range(2):
 			parent.spawn_doubleBlock("e",1)
 			await get_tree().create_timer(5.0).timeout		

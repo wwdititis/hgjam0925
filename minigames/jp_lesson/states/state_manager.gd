@@ -3,11 +3,12 @@ class_name StateManager
 
 @onready var jp_lesson = get_parent()
 
-@onready var diag_tutorial0: AcceptDialog = $"../diag_tutorial0"
-@onready var diag_tutorial1: AcceptDialog = $"../diag_tutorial1"
-@onready var diag_tutorial2: AcceptDialog = $"../diag_tutorial2"
-@onready var alert: ColorRect = $"../alert"
-@onready var lb_alert: Label = $"../alert/lb_alert"
+@onready var diag: TextureRect = $"../diag"
+@onready var diag_text: RichTextLabel = $"../diag/diag_text"
+@onready var diag_btn: Button = $"../diag/diag_btn"
+@onready var diag2: TextureRect = $"../diag2"
+@onready var diag2_text: RichTextLabel = $"../diag2/diag2_text"
+@onready var diag2_btn: Button = $"../diag2/diag2_btn"
 
 signal change_state(old_state: int, new_state: int)
 
@@ -20,7 +21,7 @@ enum State {
 	LevelFive,
 }
 
-var state_names: Array = ["Tutorial", "LevelOne", "LevelTwo", "LevelThree", "LevelFour", "LevelFive"]
+#var state_names: Array = ["Tutorial", "LevelOne", "LevelTwo", "LevelThree", "LevelFour", "LevelFive"]
 var state_nodes: Dictionary = {}
 var current_state: int = -1
 
@@ -36,7 +37,6 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	Signals.connect("block_free", Callable(self, "_on_block_freed"))
-	Signals.connect("alert_jplesson", Callable(self, "_on_alert"))
 # Disable all states initially and connect their "request_state_change" signals (if present)
 	for node in state_nodes.values():
 		if node:
@@ -77,20 +77,29 @@ func _on_block_freed():
 	Globals.block_free += 1
 	print("Block freed! Count:", Globals.block_free)
 
-func _on_diag_tutorial0_confirmed() -> void:
-	$Tutorial.Tutorial()
+func set_diag(message:String, button_text:String):	
+	diag.visible = true
+	diag_text.text = message
+	diag_btn.text = button_text
 
-func _on_diag_tutorial1_confirmed() -> void:
-	$LevelOne.Lvl1()
+func set_diag2(message:String, button_text:String):	
+	diag2.visible = true
+	diag2_text.text = message
+	diag2_btn.text = button_text
 
-func _on_diag_tutorial2_confirmed() -> void:
-	$LevelTwo.Lvl2()
-
-func _on_btn_alert_pressed() -> void:
-	Signals.emit_signal("alert_jplesson")
+func _on_diag_btn_pressed() -> void:
+	diag.visible = false
+	match current_state:
+		State.Tutorial:
+			$Tutorial.Tutorial()
+		State.LevelOne:
+			$LevelOne.Lvl1()
+		State.LevelTwo:
+			$LevelTwo.Lvl2()		
+		State.LevelThree:
+			$LevelThree.Lvl3()	
+		State.LevelFour:
+			$LevelFour.Lvl4()				
 	
-func _on_alert():	
-	alert.visible = false
-
-func message_alert(message:String):	
-	lb_alert.text = message
+func _on_diag2_btn_pressed() -> void:
+	diag2.visible = false

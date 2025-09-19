@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ytbvaibnprl" path="res://hud/phone.png" id="2_lo8gu"]
 [ext_resource type="PackedScene" uid="uid://drhew4vkvum7f" path="res://hud/stat_bar.tscn" id="3_0cv51"]
 [ext_resource type="PackedScene" uid="uid://csxs58i34oxxv" path="res://hud/messages.tscn" id="4_jp2ct"]
-[ext_resource type="FontFile" uid="uid://ck0aldn7dou6u" path="res://fonts/DotGothic16-Regular.ttf" id="5_lo8gu"]
+[ext_resource type="FontFile" uid="uid://ck0aldn7dou6u" path="res://theme/fonts/DotGothic16-Regular.ttf" id="5_lo8gu"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e7sel"]
 texture = ExtResource("2_lo8gu")

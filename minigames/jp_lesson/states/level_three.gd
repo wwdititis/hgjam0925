@@ -29,9 +29,8 @@ func exit() -> void:
 func _process(_delta: float) -> void:
 	if Globals.block_free == 4:
 		Globals.block_free +=1
-		alert.visible = true
-		sm.message_alert("Keep going!")
-		await alert.visibility_changed		
+		sm.set_diag2("Time to learn a new vowel!","ok")
+		await sm.diag2.visibility_changed	
 		for i in range(2):
 			parent.spawn_doubleBlock("u",1)
 			await get_tree().create_timer(5.0).timeout			

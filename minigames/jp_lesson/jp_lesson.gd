@@ -21,7 +21,6 @@ var lvl4 := false
 var newBlock
 var letter
 var remaining
-var correct_block = false
 
 @onready var spawn_area: Area2D = $SpawnArea
 
@@ -91,17 +90,16 @@ func spawn_tripleBlock(vowel: String, x: int) -> void:
 	
 	# store which one is correct
 	if op1_sprite.texture == correct_romaji:
-		newBlock.set_meta("correct_option", "OP1sprite")
+		newBlock.set_meta("correct_option", "OP1_btn")
 	else:
-		newBlock.set_meta("correct_option", "OP2sprite")	
-	
+		newBlock.set_meta("correct_option", "OP2_btn")	
+
 	print("waiting 7s")
-	await get_tree().create_timer(7.0).timeout
+	await get_tree().create_timer(5.0).timeout
 	spawn_tripleBlock(letter, remaining-1)	
 
 func _is_correct(clicked_node: Node, block: Node):
-	var correct_node_name = block.get_meta("correct_option")
-	if clicked_node.name == correct_node_name:
+	if clicked_node.name == block.get_meta("correct_option"):
 		update_score(1)
 		Signals.emit_signal("block_free")
 		block.call_deferred("queue_free")

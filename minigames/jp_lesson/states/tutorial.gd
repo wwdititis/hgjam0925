@@ -7,13 +7,13 @@ signal request_state_change(new_state : int)
 func enter(_params : Dictionary = {}) -> void:
 	set_process(true)
 	print("Entered Tutorial")
-	Globals.blocks_to_free = 3
-	sm.diag_tutorial0.popup_centered()
+	Globals.blocks_to_free = 1
+	sm.set_diag("Click the dashed blocks to learn your first character.","ok")
 
 func Tutorial():	
-	for i in range(3):
+	for i in range(1):
 		parent.spawn_doubleBlock("a",1)
-		await get_tree().create_timer(4.0).timeout
+		await get_tree().create_timer(2.0).timeout
 
 func exit() -> void:
 	set_process(false)
