@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dts0fh1imw00m"]
+[gd_scene load_steps=9 format=3 uid="uid://dts0fh1imw00m"]
 
 [ext_resource type="PackedScene" uid="uid://dndy48wocrbxk" path="res://dorm/dorm.tscn" id="1_0dbes"]
 [ext_resource type="Script" uid="uid://bvtywnispnoua" path="res://managers/gm.gd" id="1_ge8x6"]
-[ext_resource type="Shader" uid="uid://dka0ditl3pihd" path="res://overlay.gdshader" id="1_jae4q"]
+[ext_resource type="Shader" uid="uid://dka0ditl3pihd" path="res://darkOverlay.gdshader" id="1_jae4q"]
+[ext_resource type="Shader" uid="uid://b6velxtk4lrku" path="res://blueOverlay.gdshader" id="2_g44sy"]
 [ext_resource type="PackedScene" uid="uid://dyqovdfbx4laq" path="res://hud/hud.tscn" id="2_ge8x6"]
 [ext_resource type="PackedScene" uid="uid://ctosd4eg7e6bt" path="res://player/player.tscn" id="3_jae4q"]
 
@@ -14,10 +15,26 @@ shader_parameter/intensity = 0.72400003439
 shader_parameter/contrast = 1.6630000552425
 shader_parameter/vignette_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c35c2"]
+shader = ExtResource("2_g44sy")
+shader_parameter/glow_color = Color(0.47633988, 0.99999994, 0.9901461, 1)
+shader_parameter/intensity = 1.0400000494
+shader_parameter/spread = 1.06600004737512
+shader_parameter/pulse_speed = 1.0
+
 [node name="AWtG" type="Node"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="darkOverlay" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_g44sy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_c35c2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
