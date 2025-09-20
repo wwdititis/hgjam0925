@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dts0fh1imw00m"]
+[gd_scene load_steps=12 format=3 uid="uid://dts0fh1imw00m"]
 
 [ext_resource type="PackedScene" uid="uid://dndy48wocrbxk" path="res://dorm/dorm.tscn" id="1_0dbes"]
 [ext_resource type="Script" uid="uid://bvtywnispnoua" path="res://managers/gm.gd" id="1_ge8x6"]
 [ext_resource type="Shader" uid="uid://dka0ditl3pihd" path="res://darkOverlay.gdshader" id="1_jae4q"]
 [ext_resource type="Shader" uid="uid://ceuuiwu2j2axj" path="res://fogOverlay.gdshader" id="2_g44sy"]
 [ext_resource type="PackedScene" uid="uid://dyqovdfbx4laq" path="res://hud/hud.tscn" id="2_ge8x6"]
+[ext_resource type="Shader" uid="uid://bab006f6vw1io" path="res://bwOverlay.gdshader" id="3_c35c2"]
 [ext_resource type="PackedScene" uid="uid://ctosd4eg7e6bt" path="res://player/player.tscn" id="3_jae4q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g44sy"]
@@ -24,6 +25,12 @@ shader_parameter/smoke_color = Color(0.74558026, 0.7455802, 0.7455802, 1)
 shader_parameter/distortion_speed = 0.150000007125
 shader_parameter/density = 0.7130000338675
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bykke"]
+shader = ExtResource("3_c35c2")
+shader_parameter/color_a = Color(0, 0, 0, 1)
+shader_parameter/color_b = Color(1, 1, 1, 1)
+shader_parameter/intensity = 1.29600005830012
+
 [node name="AWtG" type="Node"]
 
 [node name="darkOverlay" type="ColorRect" parent="."]
@@ -36,6 +43,14 @@ grow_vertical = 2
 
 [node name="fogOverlay" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_fik62")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_bykke")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
