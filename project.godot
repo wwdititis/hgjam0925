@@ -30,6 +30,7 @@ mouse_cursor/custom_image="uid://cv8s5gqhfof0r"
 [global_group]
 
 interactables=""
+floor=""
 
 [rendering]
 

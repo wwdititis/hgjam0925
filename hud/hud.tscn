@@ -6,16 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://csxs58i34oxxv" path="res://hud/messages.tscn" id="4_jp2ct"]
 [ext_resource type="FontFile" uid="uid://ck0aldn7dou6u" path="res://theme/fonts/DotGothic16-Regular.ttf" id="5_lo8gu"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e7sel"]
-texture = ExtResource("2_lo8gu")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_psv2s"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x352"]
 texture = ExtResource("2_lo8gu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vsxvn"]
 texture = ExtResource("2_lo8gu")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6x352"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_psv2s"]
+texture = ExtResource("2_lo8gu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e7sel"]
 texture = ExtResource("2_lo8gu")
 
 [node name="HUD" type="Node2D"]
@@ -34,10 +34,10 @@ offset_top = -158.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_e7sel")
-theme_override_styles/hover = SubResource("StyleBoxTexture_psv2s")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_vsxvn")
 theme_override_styles/normal = SubResource("StyleBoxTexture_6x352")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vsxvn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_psv2s")
+theme_override_styles/focus = SubResource("StyleBoxTexture_e7sel")
 
 [node name="dialog_container" type="PanelContainer" parent="CanvasLayer"]
 offset_left = 1.0
@@ -58,10 +58,10 @@ text = "Some dialogue...
 visible = false
 
 [node name="dialog_window" type="ConfirmationDialog" parent="CanvasLayer"]
+oversampling_override = 1.0
 title = "Title"
 initial_position = 4
 size = Vector2i(200, 106)
-visible = true
 ok_button_text = "Yes"
 dialog_text = "Oi"
 cancel_button_text = "No"

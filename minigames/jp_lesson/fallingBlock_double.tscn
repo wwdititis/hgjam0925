@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://chonidri1256w" path="res://minigames/jp_lesson/block_click.gd" id="6_xramy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb70n"]
-size = Vector2(58, 65)
+size = Vector2(58, 118.5)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2b2k"]
 
@@ -19,6 +19,7 @@ size = Vector2(58, 65)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gpf43"]
 
 [node name="fBlock" type="RigidBody2D"]
+collision_layer = 4
 collision_mask = 2
 input_pickable = true
 mass = 0.1
@@ -33,6 +34,7 @@ texture_filter = 1
 texture = ExtResource("2_r1rwa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 26.75)
 shape = SubResource("RectangleShape2D_bb70n")
 
 [node name="OP1_btn" type="Button" parent="."]

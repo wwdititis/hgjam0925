@@ -52,7 +52,12 @@ position = Vector2(422, 174)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="block_walls"]
 build_mode = 1
-polygon = PackedVector2Array(436, 95, 352, 138, 12, -39, -294, 119, -377, 76, -423, 96, -422, 192, 16, 406, 535, 146)
+polygon = PackedVector2Array(436, 95, 352, 138, 12, -39, -142, 42, -292, 119, -377, 76, -423, 96, -422, 192, 16, 406, 535, 146)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="block_walls"]
+position = Vector2(-5, -9)
+build_mode = 1
+polygon = PackedVector2Array(-135, 22, -135, 97, -245, 150, -295, 127)
 
 [node name="background" type="Node2D" parent="."]
 position = Vector2(480, 363)
@@ -168,6 +173,14 @@ dialog_text = "I don't need to go to the bathroom right now."
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bdoor"]
 polygon = PackedVector2Array(46, 257, -2, 280, -4, 261, 47, 239)
 
+[node name="bshelf" type="Area2D" parent="interactables" groups=["interactables"]]
+script = ExtResource("17_v0sqk")
+dialog_text = "Better check these books... Some probably need to be returned to the library."
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bshelf"]
+position = Vector2(180, 46)
+polygon = PackedVector2Array(98, 230, -2, 280, -4, 261, 100, 211)
+
 [node name="mini_paint" type="Button" parent="."]
 offset_left = 581.0
 offset_top = 164.0
@@ -185,6 +198,7 @@ offset_left = 202.0
 offset_top = 210.0
 offset_right = 210.0
 offset_bottom = 240.0
+mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a4lu1")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8fw6k")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_y4nmw")
