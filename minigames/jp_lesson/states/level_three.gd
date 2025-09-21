@@ -1,8 +1,7 @@
 extends Node
 
-@onready var parent := get_parent().get_parent()
-@onready var alert: ColorRect = $"../../alert"
 @onready var sm := get_parent()
+@onready var parent := get_parent().get_parent()
 
 signal request_state_change(new_state : int)
 #@onready var sm := get_parent()

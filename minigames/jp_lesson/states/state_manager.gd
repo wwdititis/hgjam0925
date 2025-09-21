@@ -3,12 +3,12 @@ class_name StateManager
 
 @onready var jp_lesson = get_parent()
 
-@onready var diag: TextureRect = $"../diag"
-@onready var diag_text: RichTextLabel = $"../diag/diag_text"
-@onready var diag_btn: Button = $"../diag/diag_btn"
-@onready var diag2: TextureRect = $"../diag2"
-@onready var diag2_text: RichTextLabel = $"../diag2/diag2_text"
-@onready var diag2_btn: Button = $"../diag2/diag2_btn"
+@onready var diag: TextureRect = $"../CL/diag"
+@onready var diag_text: RichTextLabel = $"../CL/diag/diag_text"
+@onready var diag_btn: Button = $"../CL/diag/diag_btn"
+@onready var diag2: TextureRect = $"../CL/diag2"
+@onready var diag2_text: RichTextLabel = $"../CL/diag2/diag2_text"
+@onready var diag2_btn: Button = $"../CL/diag2/diag2_btn"
 
 signal change_state(old_state: int, new_state: int)
 

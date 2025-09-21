@@ -17,35 +17,32 @@
 [ext_resource type="Texture2D" uid="uid://blq7017a1bdtu" path="res://dorm/dormsprites/bedside.png" id="15_xba6u"]
 [ext_resource type="Texture2D" uid="uid://bhi3mdmn60sph" path="res://dorm/dormsprites/futton.png" id="16_jtnc3"]
 [ext_resource type="Script" uid="uid://il4jpcj615wf" path="res://managers/interactable.gd" id="17_v0sqk"]
-[ext_resource type="Texture2D" uid="uid://ctj0ul7ufrroi" path="res://dorm/dormsprites/bpaint.png" id="18_h4iiw"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lll8i"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qfis"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkrwe"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_26cq6"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_verd3"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkrwe"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7u5yu"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qfis"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1lsr"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lll8i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okwcx"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26cq6"]
-texture = ExtResource("18_h4iiw")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1lsr"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7qfis"]
-texture = ExtResource("18_h4iiw")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7u5yu"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kkrwe"]
-texture = ExtResource("18_h4iiw")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_verd3"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sp1wp"]
-texture = ExtResource("18_h4iiw")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a4lu1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fw6k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y4nmw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqxeu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjxch"]
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_8fw6k")
@@ -91,6 +88,7 @@ scale = Vector2(0.69, 0.69)
 texture = ExtResource("7_rkpy6")
 
 [node name="Tallbookshelf" type="Sprite2D" parent="background"]
+visible = false
 position = Vector2(-170, -242)
 scale = Vector2(0.69, 0.69)
 texture = ExtResource("8_p1wc0")
@@ -149,10 +147,10 @@ offset_right = 157.0
 offset_bottom = -83.0
 rotation = 0.580761
 mouse_default_cursor_shape = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lll8i")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_7qfis")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_kkrwe")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_26cq6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kkrwe")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7qfis")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lll8i")
 
 [node name="interactables" type="Node2D" parent="."]
 
@@ -170,28 +168,29 @@ dialog_text = "I don't need to go to the bathroom right now."
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bdoor"]
 polygon = PackedVector2Array(46, 257, -2, 280, -4, 261, 47, 239)
 
-[node name="btnPC" type="Button" parent="."]
+[node name="mini_paint" type="Button" parent="."]
 offset_left = 581.0
 offset_top = 164.0
 offset_right = 632.0
 offset_bottom = 224.0
 rotation = 0.385965
 mouse_default_cursor_shape = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_verd3")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_7u5yu")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_y1lsr")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_okwcx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y1lsr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7u5yu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_verd3")
 
-[node name="paint" type="Button" parent="."]
-offset_left = 795.0
-offset_top = 459.0
-offset_right = 857.0
-offset_bottom = 527.0
-mouse_default_cursor_shape = 2
-theme_override_styles/focus = SubResource("StyleBoxTexture_26cq6")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7qfis")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_kkrwe")
-theme_override_styles/normal = SubResource("StyleBoxTexture_sp1wp")
+[node name="mini_lesson" type="Button" parent="."]
+offset_left = 202.0
+offset_top = 210.0
+offset_right = 210.0
+offset_bottom = 240.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_a4lu1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8fw6k")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_y4nmw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_iqxeu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fjxch")
 
 [connection signal="pressed" from="bed/bed" to="." method="_on_bed_pressed"]
-[connection signal="pressed" from="paint" to="." method="_on_paint_pressed"]
+[connection signal="pressed" from="mini_paint" to="." method="_on_mini_paint_pressed"]
+[connection signal="pressed" from="mini_lesson" to="." method="_on_mini_lesson_pressed"]

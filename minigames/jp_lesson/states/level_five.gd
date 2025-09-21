@@ -1,9 +1,7 @@
 extends Node
 
-#signal request_state_change(new_state : int)
 @onready var sm := get_parent()
 @onready var parent := get_parent().get_parent()
-@onready var alert: ColorRect = $"../../alert"
 
 func enter(_params : Dictionary = {}) -> void:
 	set_process(true)

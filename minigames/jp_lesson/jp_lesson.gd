@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var sm: StateManager = $StateManager
-@onready var lbscore: Label = $HBoxContainer/lbscore
+@onready var lbscore: Label = $CL/HBoxContainer/lbscore
 var score:int = 0
 
 var double_block := preload("res://minigames/jp_lesson/fallingBlock_double.tscn")
@@ -22,7 +22,7 @@ var newBlock
 var letter
 var remaining
 
-@onready var spawn_area: Area2D = $SpawnArea
+@onready var spawn_area: Area2D = $CL/SpawnArea
 
 func _ready() -> void:
 	randomize()
@@ -41,7 +41,7 @@ func spawn_doubleBlock(vowel: String, x: int) -> void:
 	var spawn_position = get_non_overlapping_position()
 	newBlock.position = spawn_position
 	newBlock.gravity_scale = 0.05
-	add_child(newBlock)
+	$CL.add_child(newBlock)
 	var sprite_paths = blockSprites[letter]
 	jpsprite.texture = sprite_paths[0]
 	op1_sprite.texture = sprite_paths[1]
@@ -64,7 +64,7 @@ func spawn_tripleBlock(vowel: String, x: int) -> void:
 	var spawn_position = get_non_overlapping_position()
 	newBlock.position = spawn_position
 	newBlock.gravity_scale = 0.05
-	add_child(newBlock)
+	$CL.add_child(newBlock)
 	
 	# --- picks correct JP + romaji pair ---
 	var sprite_paths = blockSprites[letter]

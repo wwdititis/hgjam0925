@@ -51,7 +51,11 @@ border_color = Color(0.043137256, 0.34117648, 0.8901961, 1)
 [node name="JapaneseLesson" type="Node2D"]
 script = ExtResource("1_113pt")
 
-[node name="notebook_bg" type="TextureRect" parent="."]
+[node name="StateManager" parent="." instance=ExtResource("3_ytygp")]
+
+[node name="CL" type="CanvasLayer" parent="."]
+
+[node name="notebook_bg" type="TextureRect" parent="CL"]
 offset_left = -16.0
 offset_top = -18.0
 offset_right = 975.0
@@ -59,41 +63,39 @@ offset_bottom = 554.0
 texture = ExtResource("2_8vdo8")
 expand_mode = 1
 
-[node name="SpawnArea" type="Area2D" parent="."]
+[node name="SpawnArea" type="Area2D" parent="CL"]
 position = Vector2(708, 45)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CL/SpawnArea"]
 position = Vector2(23, -30.5)
 shape = SubResource("RectangleShape2D_fs0uv")
 
-[node name="floor" type="StaticBody2D" parent="." groups=["floor"]]
+[node name="floor" type="StaticBody2D" parent="CL" groups=["floor"]]
 position = Vector2(239, -44)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CL/floor"]
 position = Vector2(479, 540)
 shape = SubResource("WorldBoundaryShape2D_dyycs")
 
-[node name="Sprite2D" type="Sprite2D" parent="floor"]
+[node name="Sprite2D" type="Sprite2D" parent="CL/floor"]
 position = Vector2(483, 631)
 texture = ExtResource("4_vhrs5")
 
-[node name="reload" type="Button" parent="."]
+[node name="reload" type="Button" parent="CL"]
 offset_left = 26.0
 offset_top = 443.0
 offset_right = 84.0
 offset_bottom = 474.0
 text = "reload"
 
-[node name="StateManager" parent="." instance=ExtResource("3_ytygp")]
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="CL"]
 offset_left = 23.0
 offset_top = 483.0
 offset_right = 151.0
 offset_bottom = 523.0
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="CL/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -101,21 +103,21 @@ theme_override_fonts/font = SubResource("FontVariation_8vdo8")
 theme_override_font_sizes/font_size = 32
 text = "score:"
 
-[node name="lbscore" type="Label" parent="HBoxContainer"]
+[node name="lbscore" type="Label" parent="CL/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_8vdo8")
 theme_override_font_sizes/font_size = 32
 
-[node name="diag" type="TextureRect" parent="."]
+[node name="diag" type="TextureRect" parent="CL"]
 offset_left = 62.0
 offset_top = 91.0
 offset_right = 432.0
 offset_bottom = 308.0
 texture = ExtResource("4_vhrs5")
 
-[node name="diag_text" type="RichTextLabel" parent="diag"]
+[node name="diag_text" type="RichTextLabel" parent="CL/diag"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -136,7 +138,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diag_btn" type="Button" parent="diag"]
+[node name="diag_btn" type="Button" parent="CL/diag"]
 layout_mode = 0
 offset_left = 298.0
 offset_top = 152.0
@@ -154,7 +156,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_hl3cl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dlxuw")
 text = "ok"
 
-[node name="diag2" type="TextureRect" parent="."]
+[node name="diag2" type="TextureRect" parent="CL"]
 visible = false
 offset_left = 62.0
 offset_top = 91.0
@@ -162,7 +164,7 @@ offset_right = 432.0
 offset_bottom = 308.0
 texture = ExtResource("4_vhrs5")
 
-[node name="diag2_text" type="RichTextLabel" parent="diag2"]
+[node name="diag2_text" type="RichTextLabel" parent="CL/diag2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -183,7 +185,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="diag2_btn" type="Button" parent="diag2"]
+[node name="diag2_btn" type="Button" parent="CL/diag2"]
 layout_mode = 0
 offset_left = 298.0
 offset_top = 152.0
@@ -201,6 +203,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_hl3cl")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dlxuw")
 text = "ok"
 
-[connection signal="pressed" from="reload" to="." method="_on_reload_pressed"]
-[connection signal="pressed" from="diag/diag_btn" to="StateManager" method="_on_diag_btn_pressed"]
-[connection signal="pressed" from="diag2/diag2_btn" to="StateManager" method="_on_diag2_btn_pressed"]
+[connection signal="pressed" from="CL/reload" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="CL/diag/diag_btn" to="StateManager" method="_on_diag_btn_pressed"]
+[connection signal="pressed" from="CL/diag2/diag2_btn" to="StateManager" method="_on_diag2_btn_pressed"]

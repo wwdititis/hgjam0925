@@ -12,7 +12,7 @@ func enter(_params : Dictionary = {}) -> void:
 
 func Tutorial():	
 	for i in range(1):
-		parent.spawn_doubleBlock("a",1)
+		sm.jp_lesson.spawn_doubleBlock("a",1)
 		await get_tree().create_timer(2.0).timeout
 
 func exit() -> void:

@@ -3,6 +3,7 @@ extends Node
 # Scenes
 const DORM := preload("res://dorm/dorm.tscn")
 const MESSAGES := preload("res://hud/messages.tscn")
+const LESSON := preload("res://minigames/jp_lesson/jp_lesson.tscn")
 const PAINT := preload("res://minigames/paint/paint.tscn")
 const GAMEOVER := preload("res://managers/gameover.tscn")
 
