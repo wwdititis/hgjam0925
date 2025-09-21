@@ -34,7 +34,6 @@ shader_parameter/intensity = 1.29600005830012
 [node name="AWtG" type="Node"]
 
 [node name="darkOverlay" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_g44sy")
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +42,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="fogOverlay" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_fik62")
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,7 +50,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="bwOverlay" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_bykke")
 anchors_preset = 15
 anchor_right = 1.0
