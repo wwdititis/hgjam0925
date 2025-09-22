@@ -10,6 +10,7 @@ class_name HUD extends Node2D
 
 @onready var dialog_container: PanelContainer = $CanvasLayer/dialog_container
 @onready var dialog_panel: RichTextLabel = $CanvasLayer/dialog_container/dialog_panel
+@onready var lb_instructions: RichTextLabel = $CanvasLayer/lb_instructions
 
 @onready var messages: Node2D = $CanvasLayer/messages
 @onready var dialog_window: ConfirmationDialog = $CanvasLayer/dialog_window
@@ -24,7 +25,6 @@ func game_init() -> void:
 	set_food(50)
 	set_water(100)
 	set_anxiety(100)
-	dialog_container.visible = false
 	dialog_window.visible = false
 
 func set_sleep(value: float) -> void:
@@ -47,12 +47,6 @@ func set_anxiety(value: float) -> void:
 	anxiety_bar.set_value(value)	
 	Globals.current_stat["anxiety"] = value		
 	
-func set_dialog_panel(value: String) -> void:
-	dialog_panel.text = value
-	dialog_container.visible = true
-	await get_tree().create_timer(4.0).timeout
-	dialog_container.visible = false
-	
 func set_dialog_window(title: String, text: String) -> void:	
 	dialog_window.visible = true
 	dialog_window.title = title
@@ -66,10 +60,37 @@ func _on_phone_pressed() -> void:
 
 # DIALOGUES
 func dialog_intro():		
-	set_dialog_panel("A week to go before I have to move out... And I still don’t even know where I’m headed.")
-	await get_tree().create_timer(4.0).timeout
-	set_dialog_panel("I've left so many things unfinished.")
-	await get_tree().create_timer(4.0).timeout
-	set_dialog_panel("I feel like I failed at everything.")
-	await get_tree().create_timer(4.0).timeout
-	set_dialog_panel("*sigh* I better start going through it all...")	
+	dialog_container.visible = true
+	lb_instructions.text = "Press ENTER to continue"
+	dialog_panel.text = "A week to go before I have to move out... And I still don’t even know where I’m headed."
+	await wait_for_key("ui_accept")
+	dialog_panel.text = "I've got so many things unfinished. I feel like I failed at everything."
+	await wait_for_key("ui_accept")
+	dialog_panel.text = "I'm exhausted *sigh*, but eventually, I'll have to go through it all... "
+	await wait_for_key("ui_accept")
+	dialog_container.visible = false
+	Globals.movement_enabled = true
+	lb_instructions.text = "Use ARROW keys to move around"
+	await wait_for_key(["ui_up", "ui_down", "ui_left", "ui_right"])
+	lb_instructions.text = ""
+	
+func wait_for_key(actions) -> void:
+	var pressed := false
+	if typeof(actions) == TYPE_STRING:
+		actions = [actions]  # wrap single action into array
+	# Wait until any of the actions are pressed
+	while not pressed:
+		await get_tree().process_frame
+		for action in actions:
+			if Input.is_action_just_pressed(action):
+				pressed = true
+				break
+	# Wait until all those actions are released before continuing
+	var still_down := true
+	while still_down:
+		await get_tree().process_frame
+		still_down = false
+		for action in actions:
+			if Input.is_action_pressed(action):
+				still_down = true
+				break

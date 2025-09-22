@@ -23,7 +23,10 @@ func _on_global_event(event_name: String, data):
 			print("Unknown global event:", event_name)		
 		
 func _on_interacted(dialog: String) -> void:
-	hud.set_dialog_panel(dialog)
+	hud.dialog_container.visible = true
+	hud.dialog_panel.text = dialog
+	await get_tree().create_timer(5.0).timeout
+	hud.dialog_container.visible = false
 			
 func gameover():		
 	#$timerHealth.stop()
