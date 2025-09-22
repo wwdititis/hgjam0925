@@ -11,6 +11,7 @@ const CURSOR_ARROW: Texture2D = preload("res://hud/Arrow2.png")
 const CURSOR_HAND: Texture2D = preload("res://hud/Hand3.png")
 
 var movement_enabled: bool = false
+var sleep_enabled: bool = false
 
 var current_stat := {
 	"sleep" = 100,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dndy48wocrbxk"]
+[gd_scene load_steps=32 format=3 uid="uid://dndy48wocrbxk"]
 
 [ext_resource type="Script" uid="uid://cihpj4ivipgj7" path="res://dorm/dorm.gd" id="1_8fw6k"]
 [ext_resource type="Texture2D" uid="uid://dqisg8j47v2b3" path="res://dorm/dormsprites/floor.png" id="2_y4nmw"]
@@ -24,6 +24,8 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qfis"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5yxls"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lll8i"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okwcx"]
@@ -44,7 +46,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjxch"]
 
-[node name="Room" type="Node2D"]
+[node name="Dorm" type="Node2D"]
 script = ExtResource("1_8fw6k")
 
 [node name="block_walls" type="StaticBody2D" parent="."]
@@ -155,7 +157,9 @@ mouse_default_cursor_shape = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_26cq6")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_kkrwe")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_7qfis")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_5yxls")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lll8i")
+disabled = true
 
 [node name="interactables" type="Node2D" parent="."]
 

@@ -1,6 +1,7 @@
 class_name HUD extends Node2D
 
 @onready var gm: GM = $"../GameManager"
+@onready var dorm: Node2D = $"../Dorm"
 
 @onready var sleep_bar: StatBar = $CanvasLayer/stats/needs/sleep_bar
 @onready var social_bar: StatBar = $CanvasLayer/stats/needs/social_bar
@@ -73,6 +74,7 @@ func dialog_intro():
 	lb_instructions.text = "Use ARROW keys to move around"
 	await wait_for_key(["ui_up", "ui_down", "ui_left", "ui_right"])
 	lb_instructions.text = ""
+	dorm.bed.disabled = false
 	
 func wait_for_key(actions) -> void:
 	var pressed := false
