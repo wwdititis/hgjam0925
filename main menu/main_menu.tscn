@@ -1,91 +1,130 @@
-[gd_scene load_steps=16 format=3 uid="uid://y7lu3a5pbi18"]
+[gd_scene load_steps=22 format=3 uid="uid://y7lu3a5pbi18"]
 
+[ext_resource type="Script" uid="uid://b2agr4bdrnv3i" path="res://main menu/main_menu.gd" id="1_45qoi"]
 [ext_resource type="Texture2D" uid="uid://dqfc57m0mwvmh" path="res://main menu/Screenshot 2025-09-20 220825.png" id="1_cok42"]
+[ext_resource type="Texture2D" uid="uid://dgylxhd6gukel" path="res://main menu/ui/buttonUnpressed.png" id="2_m48o8"]
+[ext_resource type="Texture2D" uid="uid://bfvmw5spfg8gv" path="res://main menu/ui/buttonPressed.png" id="3_ra13p"]
+[ext_resource type="Texture2D" uid="uid://dv8u4olssc5yq" path="res://main menu/ui/frame.png" id="5_6fy38"]
+[ext_resource type="PackedScene" uid="uid://v0moo1rq7crm" path="res://main menu/fade_transition.tscn" id="6_6fy38"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8f8xy"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_45qoi"]
+texture = ExtResource("2_m48o8")
+expand_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m48o8"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m48o8"]
+texture = ExtResource("3_ra13p")
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_auhsi"]
+texture = ExtResource("2_m48o8")
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra13p"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_45qoi"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m48o8"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6fy38"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6fy38"]
+texture = ExtResource("2_m48o8")
+expand_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_auhsi"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ra13p"]
+texture = ExtResource("3_ra13p")
+expand_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ldhbh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qo5t"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iohqi"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_driid"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5qo5t"]
+texture = ExtResource("2_m48o8")
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ft5q2"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6o5wd"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_driid"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2m40"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ldhbh"]
+texture = ExtResource("2_m48o8")
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6o5wd"]
+texture = ExtResource("3_ra13p")
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f2m40"]
+texture = ExtResource("2_m48o8")
+expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ssxje"]
 
-[node name="Main Menu" type="Node2D"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iohqi"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
-self_modulate = Color(0.38105646, 0.47816715, 0.47816715, 1)
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_45qoi")
+
+[node name="bg" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(0.9450524, 1.0566169, 1.0566169, 1)
 offset_right = 965.0
 offset_bottom = 551.0
 texture = ExtResource("1_cok42")
 
+[node name="frame" type="TextureRect" parent="."]
+offset_left = 365.0
+offset_top = 199.0
+offset_right = 600.0
+offset_bottom = 421.0
+texture = ExtResource("5_6fy38")
+
 [node name="button manager" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 448.0
-offset_top = 264.0
-offset_right = 488.0
-offset_bottom = 304.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 453.0
+offset_top = 243.0
+offset_right = 493.0
+offset_bottom = 283.0
 
 [node name="start" type="Button" parent="button manager"]
 layout_mode = 0
-offset_left = -66.0
-offset_top = -32.0
-offset_right = 125.0
-offset_bottom = 26.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_8f8xy")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_m48o8")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ra13p")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_45qoi")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_6fy38")
+offset_left = -28.0
+offset_top = -1.0
+offset_right = 91.0
+offset_bottom = 33.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_45qoi")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m48o8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_auhsi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ra13p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m48o8")
 text = "Start"
 
 [node name="options" type="Button" parent="button manager"]
 layout_mode = 0
-offset_left = -63.0
-offset_top = 36.0
-offset_right = 128.0
-offset_bottom = 93.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_auhsi")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ldhbh")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_5qo5t")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_iohqi")
+offset_left = -29.0
+offset_top = 52.0
+offset_right = 91.0
+offset_bottom = 86.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_6fy38")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ra13p")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5qo5t")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ft5q2")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_driid")
 text = "Options"
 
 [node name="quit" type="Button" parent="button manager"]
 layout_mode = 0
-offset_left = -63.0
-offset_top = 117.0
-offset_right = 129.0
-offset_bottom = 175.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ft5q2")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_6o5wd")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_f2m40")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ssxje")
+offset_left = -30.0
+offset_top = 107.0
+offset_right = 90.0
+offset_bottom = 141.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ldhbh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6o5wd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_f2m40")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ssxje")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iohqi")
 text = "Quit"
+
+[node name="fadeTransition" parent="." instance=ExtResource("6_6fy38")]
+visible = false
+
+[node name="fade_timer" type="Timer" parent="fadeTransition"]
+
+[connection signal="pressed" from="button manager/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="button manager/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="button manager/quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="fadeTransition/fade_timer" to="." method="_on_fade_timer_timeout"]
