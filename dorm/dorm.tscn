@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dndy48wocrbxk"]
+[gd_scene load_steps=31 format=3 uid="uid://dndy48wocrbxk"]
 
 [ext_resource type="Script" uid="uid://cihpj4ivipgj7" path="res://dorm/dorm.gd" id="1_8fw6k"]
 [ext_resource type="Texture2D" uid="uid://dqisg8j47v2b3" path="res://dorm/dormsprites/floor.png" id="2_y4nmw"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://cdrgwra0xhjdv" path="res://dorm/dormsprites/laptop.png" id="12_fij0p"]
 [ext_resource type="Texture2D" uid="uid://kv11ux0qetq1" path="res://dorm/dormsprites/coathanger.png" id="13_a1ajl"]
 [ext_resource type="Texture2D" uid="uid://dx5ai5y3hq87u" path="res://dorm/dormsprites/chair.png" id="14_otkw8"]
-[ext_resource type="Texture2D" uid="uid://blq7017a1bdtu" path="res://dorm/dormsprites/bedside.png" id="15_xba6u"]
 [ext_resource type="Texture2D" uid="uid://bhi3mdmn60sph" path="res://dorm/dormsprites/futton.png" id="16_jtnc3"]
 [ext_resource type="Script" uid="uid://il4jpcj615wf" path="res://managers/interactable.gd" id="17_v0sqk"]
 
@@ -49,17 +48,31 @@
 [node name="Dorm" type="Node2D"]
 script = ExtResource("1_8fw6k")
 
-[node name="block_walls" type="StaticBody2D" parent="."]
+[node name="obstacles" type="StaticBody2D" parent="."]
 position = Vector2(422, 174)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="block_walls"]
+[node name="walls" type="CollisionPolygon2D" parent="obstacles"]
 build_mode = 1
 polygon = PackedVector2Array(436, 95, 352, 138, 12, -39, -142, 42, -292, 119, -377, 76, -423, 96, -422, 192, 16, 406, 535, 146)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="block_walls"]
+[node name="book_shelf" type="CollisionPolygon2D" parent="obstacles"]
 position = Vector2(-5, -9)
 build_mode = 1
 polygon = PackedVector2Array(-135, 22, -135, 97, -245, 150, -295, 127)
+
+[node name="chair" type="CollisionPolygon2D" parent="obstacles"]
+position = Vector2(-5, -9)
+build_mode = 1
+polygon = PackedVector2Array(165, 121, 133, 139, 99, 122, 135, 97)
+
+[node name="table" type="CollisionPolygon2D" parent="obstacles"]
+position = Vector2(-5, -9)
+build_mode = 1
+polygon = PackedVector2Array(262, 110, 191, 155, 153, 131, 136, 141, 99, 123, 85, 112, 80, 26, 95, 20, 164, -18, 282, 27)
+
+[node name="coat_hanger" type="CollisionPolygon2D" parent="obstacles"]
+position = Vector2(-5, -9)
+polygon = PackedVector2Array(337, 145, 324, 160, 343, 170, 360, 159)
 
 [node name="background" type="Node2D" parent="."]
 position = Vector2(480, 363)
@@ -130,11 +143,6 @@ position = Vector2(69, -120)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("14_otkw8")
 
-[node name="Bedside" type="Sprite2D" parent="background"]
-z_index = 6
-position = Vector2(23.0001, 136)
-texture = ExtResource("15_xba6u")
-
 [node name="bed" type="StaticBody2D" parent="."]
 position = Vector2(503, 499)
 
@@ -175,7 +183,7 @@ script = ExtResource("17_v0sqk")
 dialog_text = "I don't need to go to the bathroom right now."
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bdoor"]
-polygon = PackedVector2Array(46, 257, -2, 280, -4, 261, 47, 239)
+polygon = PackedVector2Array(23, 265, -2, 280, -4, 261, 24, 252)
 
 [node name="bshelf" type="Area2D" parent="interactables" groups=["interactables"]]
 script = ExtResource("17_v0sqk")
@@ -183,7 +191,14 @@ dialog_text = "Better check these books... Some probably need to be returned to 
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/bshelf"]
 position = Vector2(180, 46)
-polygon = PackedVector2Array(98, 230, -2, 280, -4, 261, 100, 211)
+polygon = PackedVector2Array(65, 237, 43, 249, 36, 230, 63, 221)
+
+[node name="mirror" type="Area2D" parent="interactables" groups=["interactables"]]
+script = ExtResource("17_v0sqk")
+dialog_text = "Ugh, I look awful! I need 12 hours of sleep and a 5-hour bath."
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactables/mirror"]
+polygon = PackedVector2Array(111, 287, 97, 280, 96, 249, 115, 249)
 
 [node name="mini_paint" type="Button" parent="."]
 offset_left = 581.0

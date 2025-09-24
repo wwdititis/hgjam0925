@@ -21,4 +21,4 @@ func _on_mini_paint_pressed() -> void:
 	add_child(scene_instance)
 
 func _on_mini_lesson_pressed() -> void:
-	add_child(Globals.LESSON.instantiate())
+	hud.dialog_lesson()

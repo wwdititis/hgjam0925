@@ -67,7 +67,7 @@ func dialog_intro():
 	await wait_for_key("ui_accept")
 	dialog_panel.text = "I've got so many things unfinished. I feel like I failed at everything."
 	await wait_for_key("ui_accept")
-	dialog_panel.text = "I'm exhausted *sigh*, but eventually, I'll have to go through it all... "
+	dialog_panel.text = "I'm exhausted *sigh*, but eventually, I'll have to go through it all. One thing at a time... that should make it easier."
 	await wait_for_key("ui_accept")
 	dialog_container.visible = false
 	Globals.movement_enabled = true
@@ -75,6 +75,17 @@ func dialog_intro():
 	await wait_for_key(["ui_up", "ui_down", "ui_left", "ui_right"])
 	lb_instructions.text = ""
 	dorm.bed.disabled = false
+	
+func dialog_lesson():		
+	Globals.movement_enabled = false
+	dialog_container.visible = true
+	lb_instructions.text = "Press ENTER to continue"
+	dialog_panel.text = "Oh wow, my japanese textbook. I was really excited to learn a new language...not even sure why I gave it up..."
+	await wait_for_key("ui_accept")	
+	dialog_panel.text = "Maybe... Maybe there's still time."
+	await wait_for_key("ui_accept")
+	add_child(Globals.LESSON.instantiate())
+	Globals.movement_enabled = true
 	
 func wait_for_key(actions) -> void:
 	var pressed := false
